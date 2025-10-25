@@ -109,7 +109,7 @@ main {
   display: flex;
   flex-direction: column; 
   justify-content: center; 
-  min-height: calc(90vh6rem);
+  min-height: calc(90vh - 6rem);
 }
 
 .content{
@@ -128,3 +128,23 @@ main {
          animation: animationGradient 2.5s linear infinite;
          box-shadow: 0 0 15px rgba(255, 255, 255,0.336);
  }
+@keyframes animationGradient {
+        to {
+                background-position: 200%;
+                
+        }
+}
+.tag-box .tag{
+        position: absolute;
+        inset:3px 3px 3px;
+        background-color: black;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0,5s ease;
+        
+}
+.tag-box .tag:hover {
+        color:#5300a0;        
+}

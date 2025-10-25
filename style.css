@@ -102,8 +102,19 @@ body{
             color: var(--text-primary);
               }
        
+/*Botão e texto ao meio*/
+.btn-signing {
+        border-radius: 50px;
+        border: none;
+        font-size: 1rem;
+        font-weight: 500;
+        transition: background-color 0.2 ease;
+        cursor: pointer;
+}
+                
+                
 
-          /* MAIN CONTENT */
+/* MAIN CONTENT */
 
 main {
   display: flex;

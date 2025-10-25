@@ -16,18 +16,18 @@ line-height: 1.5;
 }
 
 /*Gradiente da imagem png*/
-.image-gradiente{
-position:absolute; 
-  top:0;
-  rigth:0;
-  opacity:0;
-  z-index:-1;
+.image-gradient{
+  position:absolute; 
+  top: 0;
+  rigth: 0;
+  opacity: 0.5;
+  z-index: -1;
   
 }
 .layer-blur{
   height:0;
   width:30rem;
-  position:absolute;
+  position: absolute;
   top:20%;
   right:0;
   box-shadow: 0 0 700px 15px white;

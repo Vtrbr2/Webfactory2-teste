@@ -1,26 +1,3 @@
-/*Gradiente da imagem png*/
-        .image-gradient{
-          position:absolute; 
-        top: 0;
-         rigth: 0;
-         opacity: 0.5;
-         z-index: -1;
-  
-   }
-    .layer-blur{
-          height:0;
-          width:30rem;
-          position: absolute;
-          top:20%;
-          right:0;
-          box-shadow: 0 0 700px 15px white;
-          rotate: -30deg;
-          z-index:-1;
-}
-/*outras coisas*/
-
-
-
 :root {
   --blue-clr: #1b1b5d;
   --light-blue-clr: #27278d;
@@ -193,7 +170,18 @@ img {
 }
 
 /* === NAVBAR === */
-        .navbar {
+ :root {
+            --primary-color: #5865F2;
+            --secondary-color: #7c3aed;
+            --bg-dark: #0D0F1A;
+            --bg-light: #161827;
+            --text-primary: #FFFFFF;
+            --text-secondary: #a0a3bd;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --radius: 12px;
+ } 
+
+.navbar {
             position: sticky;
             top: 0;
             z-index: 1000;

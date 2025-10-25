@@ -1,3 +1,15 @@
+
+        :root {
+            --primary-color: #5865F2;
+            --secondary-color: #7c3aed;
+            --bg-dark: #0D0F1A;
+            --bg-light: #161827;
+            --text-primary: #FFFFFF;
+            --text-secondary: #a0a3bd;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --radius: 12px;
+        }
+
 * {
   margin: 0;
   padding: 0;

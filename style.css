@@ -766,4 +766,24 @@ img {
     transform: translateX(0px);
   }
 }
-        
+             /* ===== TEMAS ===== */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #111111;
+  --nav-bg: #f3f3f3;
+  --card-bg: #f8f8f8;
+}
+
+body.dark-mode {
+  --bg-color: #0d0f1a;
+  --text-color: #ffffff;
+  --nav-bg: #161b22;
+  --card-bg: #1d222b;
+}
+
+/* aplica as cores de tema */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background 0.3s, color 0.3s;
+}   

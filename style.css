@@ -30,6 +30,11 @@ position:absolute;
   position:absolute;
   top:20%;
   right:0;
-  box-shadow:0 0 700px 15px white;
+  box-shadow: 0 0 700px 15px white;
   rotate: -30deg;
+  z-index:-1;
+}
+
+{
+  
 }

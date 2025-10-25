@@ -103,4 +103,23 @@ body{
               }
        
 
-        
+          /* MAIN CONTENT */
+
+.main{
+display: flex;
+flex-direction: column; 
+justify-content: center; 
+min-height: calc(90vh6rem);
+}
+
+.content{
+max-width: 40rem;
+margin-left: 10%;
+z-index: 999;
+
+ }
+ .tag-box {
+position: relative;
+ width: 18rem;
+ height: 2.5rem;
+  

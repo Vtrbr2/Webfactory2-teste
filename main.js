@@ -93,3 +93,35 @@ const swiper = new Swiper('.swiper', {
         });
 // Footer current year
 document.getElementById('currentYear').innerText = new Date().getFullYear();
+
+// === TROCA DE TEMA (CLARO / ESCURO) ===
+const themeToggle = document.getElementById("theme-toggle");
+const body = document.body;
+
+// Verifica tema salvo
+if (localStorage.getItem("theme") === "dark") {
+  body.classList.add("dark-theme");
+  themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+}
+
+// Clique para alternar
+themeToggle.addEventListener("click", () => {
+  body.classList.toggle("dark-theme");
+  const isDark = body.classList.contains("dark-theme");
+
+  themeToggle.innerHTML = isDark
+    ? '<i class="fas fa-sun"></i>'
+    : '<i class="fas fa-moon"></i>';
+
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+});
+
+
+// === MENU RESPONSIVO (NAVBAR) ===
+const menuIcon = document.querySelector(".fa-bars");
+const navLinks = document.querySelector(".nav-links");
+
+menuIcon.addEventListener("click", () => {
+  navLinks.classList.toggle("active"); // mostra/esconde o menu
+  menuIcon.classList.toggle("open");   // animação opcional no ícone
+});

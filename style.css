@@ -170,6 +170,7 @@ img {
 }
 
 /* === NAVBAR === */
+/* === NAVBAR === */
         .navbar {
             position: sticky;
             top: 0;
@@ -206,30 +207,7 @@ img {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.2rem;
-        }
-
-        .nav-link {
-            cursor: pointer;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: 0.3s;
-            font-weight: 500;
-        }
-
-        .nav-link:hover, .nav-link.active {
-            color: var(--text-primary);
-        }
-
-        .right-actions {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-          }
+}
 
 
 /* Hero */

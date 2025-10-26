@@ -1,8 +1,5 @@
 const header = document.querySelector('.header-container');
 const navBar = document.querySelector('.nav-bar');
-const menuToggleBtn = document.querySelector('.menu-toggle-btn');
-const navLinks = document.querySelectorAll('.nav-links a');
-
 // Header scroll event
 window.addEventListener('scroll', () => {
   window.scrollY > 0
@@ -10,27 +7,8 @@ window.addEventListener('scroll', () => {
     : (header.style.top = '32px');
 });
 
-// Mobile menu icon toggle
-menuToggleBtn.addEventListener('click', () => {
-  navBar.classList.toggle('active');
 
-  // Change icon
-  navBar.classList.contains('active')
-    ? (menuToggleBtn.innerHTML = '<i class="fas fa-xmark"></i>')
-    : (menuToggleBtn.innerHTML = '<i class="fas fa-bars"></i>');
-});
 
-// Activate nav link
-navLinks.forEach((link) => {
-  link.addEventListener('click', () => {
-    const activeNavLink = document.querySelector('#navLinks a.active-link');
-    const activeMobNavLink = document.querySelector(
-      '#mobNavLinks a.active-link'
-    );
-
-    // Remove 'active-link' class
-    activeNavLink && activeNavLink.classList.remove('active-link');
-    activeMobNavLink && activeMobNavLink.classList.remove('active-link');
 
     // Add 'active-link' class
     link.classList.add('active-link');
@@ -72,18 +50,69 @@ const swiper = new Swiper('.swiper', {
 
 // Footer current year
 document.getElementById('currentYear').innerText = new Date().getFullYear();
+// Navbar functionality
+class Navbar {
+    constructor() {
+        this.navbar = document.querySelector('.navbar');
+        this.menuToggle = document.getElementById('menu-toggle');
+        this.mobileMenu = document.getElementById('mobile-menu');
+        this.init();
+    }
 
-// script.js
+    init() {
+        // Scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                this.navbar.classList.add('scrolled');
+            } else {
+                this.navbar.classList.remove('scrolled');
+            }
+        });
 
-// Seleciona o botão (hamburger) e a lista de links (nav-links)
-const hamburger = document.querySelector(".hamburger");
-const navLinks = document.querySelector(".nav-links"); // Agora ele vai pegar o <ul class="nav-links">
+        // Mobile menu toggle
+        this.menuToggle.addEventListener('click', () => {
+            this.mobileMenu.classList.toggle('active');
+            this.animateHamburger();
+        });
 
-// Adiciona o "ouvinte" de clique no botão
-hamburger.addEventListener("click", () => {
-  // Adiciona/Remove a classe 'active' do botão (para animar para "X")
-  hamburger.classList.toggle("active");
-  
-  // Adiciona/Remove a classe 'active' da lista de links (para mostrar/esconder)
-  navLinks.classList.toggle("active");
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                this.mobileMenu.classList.remove('active');
+                this.resetHamburger();
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!this.navbar.contains(e.target) && this.mobileMenu.classList.contains('active')) {
+                this.mobileMenu.classList.remove('active');
+                this.resetHamburger();
+            }
+        });
+    }
+
+    animateHamburger() {
+        const lines = document.querySelectorAll('.hamburger-line');
+        if (this.mobileMenu.classList.contains('active')) {
+            lines[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
+            lines[1].style.opacity = '0';
+            lines[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
+        } else {
+            this.resetHamburger();
+        }
+    }
+
+    resetHamburger() {
+        const lines = document.querySelectorAll('.hamburger-line');
+        lines.forEach(line => {
+            line.style.transform = 'none';
+            line.style.opacity = '1';
+        });
+    }
+}
+
+// Initialize navbar when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new Navbar();
 });

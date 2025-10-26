@@ -112,39 +112,26 @@
 </nav>
 
 
-<!-- ====== Fundo animado VANTA HALO ====== -->
-<section id="vanta-bg" class="relative w-full h-[500px] overflow-hidden bg-black">
-  <!-- Div que recebe o efeito -->
-  <div id="vanta-layer" class="absolute inset-0"></div>
-
-  <!-- Conteúdo acima do fundo -->
-  <div class="relative z-10 flex flex-col items-center justify-center h-full text-white text-center">
-    <h2 class="text-3xl font-bold">Inovação que brilha ✨</h2>
-    <p class="text-lg mt-3">Tecnologia em movimento, com estilo moderno.</p>
+<section id="particles-js" class="relative w-full h-[500px] bg-black">
+  <div id="tsparticles" class="absolute inset-0"></div>
+  <div class="relative z-10 flex items-center justify-center h-full text-white text-center">
+    <h2 class="text-3xl font-bold">Inovação em movimento ⚛️</h2>
   </div>
 </section>
 
-<!-- Scripts do Vanta -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.halo.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
 <script>
-  window.addEventListener('load', function(){
-    VANTA.HALO({
-      el: "#vanta-layer",      // Aplica só dentro da camada
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 200.00,
-      minWidth: 200.00,
-      baseColor: 0x1a7fa5,
-      backgroundColor: 0x000000,
-      amplitudeFactor: 1.5,
-      size: 1.2
-    });
+  tsParticles.load("tsparticles", {
+    background: { color: "#000" },
+    particles: {
+      color: { value: "#00ffff" },
+      move: { enable: true, speed: 1 },
+      number: { value: 80 },
+      size: { value: 2 },
+      links: { enable: true, color: "#00ffff" }
+    }
   });
-</script>
-<!-- ====== Fim do fundo VANTA ====== -->    <!-- Main content -->
-    <main>
+</script>    <main>
       <!-- Hero -->
       <section id="hero">
         <div class="container hero-content">

@@ -7,6 +7,7 @@
   --light-dark-bg: #1b1b1b;
   --primary-text: #e0e0e0;
   --secondary-text: #acacac;
+  --text-secondary: #a0a3bd;
 }
 * {
        margin: 0;
@@ -171,6 +172,7 @@ img {
 
 /* === NAVBAR === */
 /* === NAVBAR === */
+        /* === NAVBAR === */
         .navbar {
             position: sticky;
             top: 0;
@@ -207,7 +209,30 @@ img {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-}
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.2rem;
+        }
+
+        .nav-link {
+            cursor: pointer;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--text-primary);
+        }
+
+        .right-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
 
 
 /* Hero */
@@ -733,145 +758,4 @@ img {
     transform: translateX(0px);
   }
 }
-/* --- Estilos do Header e Navbar Base --- */
-header {
-  width: 100%;
-  position: fixed; /* Fixo no topo */
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  transition: top 0.3s ease; /* Para o efeito do JS */
-}
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 5%;
-  background-color: #1a1a2e; /* Cor de fundo escura (exemplo) */
-  color: #fff;
-  position: relative; /* Importante para o menu dropdown */
-}
-
-
-
-
-        .nav-link:hover, .nav-link.active {
-            color: var(--text-primary);
-        }
-aq
-/* Efeito de scroll que seu JS adiciona */
-.navbar.scrolled {
-  background-color: #111; /* Fica mais escuro ao rolar */
-  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-}
-
-
-
-/* --- Links do Desktop (escondidos no mobile) --- */
-.desktop-links {
-  display: none; /* Escondido por padrão (mobile-first) */
-  gap: 25px;
-}
-.nav-link {
-  color: #ecf0f1;
-  text-decoration: none;
-  font-size: 1.1rem;
-  padding-bottom: 5px;
-  border-bottom: 2px solid transparent;
-  transition: all 0.3s ease;
-}
-.nav-link:hover,
-.nav-link.active-link { /* Classe que seu JS adiciona */
-  color: #3498db; /* Cor de destaque */
-  border-bottom-color: #3498db;
-}
-
-/* --- Botão Hambúrguer (só aparece no mobile) --- */
-#menu-toggle {
-  display: flex; /* Visível no mobile */
-  flex-direction: column;
-  gap: 5px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 5px;
-}
-.hamburger-line {
-  width: 28px;
-  height: 3px;
-  background-color: #fff;
-  border-radius: 2px;
-  transition: transform 0.3s ease, opacity 0.3s ease; /* Controlado pelo JS */
-}
-
-
-/* ===============================================
-A MÁGICA ACONTECE AQUI (Correção do Menu Mobile)
-===============================================
-*/
-
-#mobile-menu {
-  display: none; /* 1. Escondido por padrão */
-  position: absolute; /* 2. Sai do fluxo normal */
-  
-  /* 3. CORRIGE A POSIÇÃO: Fica abaixo do header, não em tela cheia */
-  top: 100%; /* 100% da altura do pai (.navbar) */
-  left: 0;
-  
-  /* 4. CORRIGE O TAMANHO: Ocupa 100% da largura, mas altura automática */
-  width: 100%;
-  height: auto; /* Esta é a mudança! Não é 100vh */
-
-  /* 5. CORRIGE A COR: Fundo escuro */
-  background-color: #1a1a2e; 
-  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-  padding: 10px 0; /* Espaço interno */
-}
-
-/* 6. Quando o JS adiciona a classe .active, o menu aparece */
-#mobile-menu.active {
-  display: block;
-}
-
-/* 7. CORRIGE OS LINKS: Cor dos links para branco/claro */
-.mobile-nav-link {
-  display: block;
-  color: #ecf0f1; /* Cor do texto clara */
-  text-decoration: none;
-  font-size: 1.2rem;
-  padding: 15px 5%; /* Padding alinhado com o da navbar */
-  transition: background-color 0.2s ease;
-}
-
-.mobile-nav-link:hover {
-  background-color: #2c3e50; /* Um pouco mais claro no hover */
-}
-
-/* Estilo do botão de orçamento (exemplo) */
-.mobile-nav-link.cta-button {
-  text-align: center;
-  background-color: #3498db;
-  color: #fff;
-  margin: 10px 5%;
-  border-radius: 5px;
-  font-weight: bold;
-}
-.mobile-nav-link.cta-button:hover {
-  background-color: #2980b9;
-}
-
-
-/* --- Media Query (Desktop) --- */
-@media (min-width: 769px) {
-  .desktop-links {
-    display: flex; /* Mostra links do desktop */
-  }
-  #menu-toggle {
-    display: none; /* Esconde botão hambúrguer */
-  }
-  #mobile-menu {
-    display: none !important; /* Garante que o menu mobile NUNCA apareça no desktop */
-  }
-}
-    

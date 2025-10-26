@@ -94,3 +94,14 @@ const swiper = new Swiper('.swiper', {
 // Footer current year
 document.getElementById('currentYear').innerText = new Date().getFullYear();
 
+// Seleciona o botão hambúrguer e a lista de links
+const hamburger = document.querySelector(".hamburger");
+const navLinks = document.querySelector(".nav-links");
+
+// Adiciona um "ouvinte" de clique ao botão
+hamburger.addEventListener("click", () => {
+  // Quando clicado, ele adiciona ou remove a classe "active"
+  // tanto do botão (para virar "X") quanto dos links (para aparecer)
+  hamburger.classList.toggle("active");
+  navLinks.classList.toggle("active");
+});

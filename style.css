@@ -766,4 +766,104 @@ img {
     transform: translateX(0px);
   }
 }
-             
+/* Lista de Links (Desktop) */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px; /* Espaço entre os links */
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #ecf0f1;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 5px 0;
+  position: relative; /* Para o efeito de sublinhado */
+  transition: color 0.3s ease;
+}
+
+/* Efeito "hover" nos links */
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: #3498db; /* Cor de destaque */
+  bottom: 0;
+  left: 0;
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: #3498db; /* Muda a cor do texto no hover */
+}
+
+.nav-links li a:hover::after {
+  width: 100%; /* Mostra o sublinhado no hover */
+}
+
+/* Botão Hambúrguer (Escondido no Desktop) */
+.hamburger {
+  display: none; /* Escondido por padrão */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px; /* Espaço entre as barras */
+}
+
+.hamburger .bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #ecf0f1;
+  transition: all 0.3s ease-in-out;
+}
+
+/* --- Media Query para Responsividade (Mobile) --- */
+
+/* Esta é a parte mais importante para o "pro" */
+@media (max-width: 768px) {
+  
+  /* 1. Mostra o botão hambúrguer */
+  .hamburger {
+    display: flex; 
+  }
+
+  /* 2. Esconde os links de navegação */
+  .nav-links {
+    display: none; /* Escondido até ser ativado */
+    
+    /* Layout do menu mobile */
+    position: absolute;
+    top: 68px; /* Altura do header (ajuste se mudar o padding) */
+    left: 0;
+    width: 100%;
+    background-color: #34495e; /* Fundo um pouco diferente */
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* 3. Classe 'active' que o JavaScript vai adicionar */
+  .nav-links.active {
+    display: flex; /* Mostra o menu */
+  }
+
+  .nav-links li {
+    margin: 10px 0;
+  }
+  
+  /* 4. Animação do "X" no botão hambúrguer */
+  .hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  }             

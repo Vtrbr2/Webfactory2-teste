@@ -110,25 +110,35 @@
 </aside>
       <!--aqui acaba a nav bar 🫠-->
 </nav>
+<!-- ====== Fundo animado VANTA HALO ====== -->
+<section id="vanta-bg" class="relative w-full h-[500px] overflow-hidden">
+  <div class="absolute inset-0 z-0"></div>
+  <div class="relative z-10 flex flex-col items-center justify-center h-full text-white text-center">
+    <h2 class="text-3xl font-bold">Inovação que brilha ✨</h2>
+    <p class="text-lg mt-3">Tecnologia em movimento, com estilo moderno.</p>
+  </div>
+</section>
+
+<!-- Scripts do Vanta -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.halo.min.js"></script>
 <script>
-var setVanta = ()=>{
-if (window.VANTA) window.VANTA.HALO({
-  el: ".s-page-1 .s-section-1 .s-section",
-  mouseControls: true,
-  touchControls: true,
-  gyroControls: false,
-  minHeight: 200.00,
-  minWidth: 200.00,
-  baseColor: 0x1a7fa5
-})
-}
-_strk.push(function() {
-  setVanta()
-  window.edit_page.Event.subscribe( "Page.beforeNewOneFadeIn", setVanta )
-})
+  window.addEventListener('load', function(){
+    VANTA.HALO({
+      el: "#vanta-bg > div:first-child", // Aplica no fundo
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      baseColor: 0x1a7fa5,   // Cor base (pode mudar)
+      backgroundColor: 0x000000, // Fundo preto elegante
+      amplitudeFactor: 1.5,
+      size: 1.2
+    });
+  });
 </script>
+<!-- ====== Fim do fundo VANTA ====== -->
 
     <!-- Main content -->
     <main>

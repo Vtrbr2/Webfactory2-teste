@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Web Factory</title>
+    <title>AI Web Factory - Venda de Sites Profissionais</title>
     <!-- Font Awesome CDN -->
     <link
       rel="stylesheet"
@@ -27,11 +27,53 @@
 
     <!-- CSS File -->
     <link rel="stylesheet" href="style.css" />
+
   </head>
+ 
+  
+  
+  <!--aqui começa o bloqueador de f12 e possivelmente cópias-->
+    
+    <script>
+    // Bloquear F12, Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+Shift+J
+    document.addEventListener("keydown", function(e) {
+        if (
+            e.key === "F12" || 
+            (e.ctrlKey && e.shiftKey && ["I","C","J"].includes(e.key.toUpperCase())) ||
+            (e.ctrlKey && e.key.toUpperCase() === "U") // bloquear Ctrl+U (ver código-fonte)
+        ) {
+            e.preventDefault();
+            alert("Essa ação está desativada!");
+        }
+    });
+
+    // Bloquear clique direito
+    document.addEventListener("contextmenu", function(e) {
+        e.preventDefault();
+        alert("Ação nao permitida!");
+    });
+
+    // Bloquear seleção de texto
+    document.addEventListener("selectstart", function(e) {
+        e.preventDefault();
+    });
+
+    // Bloquear copiar (Ctrl+C)
+    document.addEventListener("copy", function(e) {
+        e.preventDefault();
+        alert("Copiar conteúdo não é permitido!");
+    });
+       
+    </script>
+    
+<!--aqui acaba o bloqueador de f12 e cópias-->
+  
+  
+  
   <body>
-    <!-- Top text -->
+    <!-- texto do topo -->
     <div class="top-p">
-      <p>20% de desconto no 1⁰ Projeto.<a href="#">Ver termos</a></p>
+      <p>20% de desconto no 1⁰ Projeto.<a href="#">Saiba mais</a></p>
     </div>
 
 
@@ -69,9 +111,7 @@
       <!--aqui acaba a nav bar 🫠-->
 </nav>
 
-    <section>
-     <di><a href="https://emoji.gg/emoji/26408-goldwelcome"><img src="https://cdn3.emoji.gg/emojis/26408-goldwelcome.gif" width="64px" height="64px" alt="GoldWelcome"></a></di>
-    </section>
+    
     <!-- Main content -->
     <main>
       <!-- Hero -->

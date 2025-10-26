@@ -8,33 +8,32 @@ document.querySelectorAll('.faq-question').forEach(button => {
 
 
 // ===== ATUALIZAR NAVBAR ATIVA =====
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            let currentSection = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - 200)) {
-                    currentSection = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${currentSection}`) {
-                    link.classList.add('active');
-                }
-            });
-        }};     
-            
-            // Seleciona elementos
+window.addEventListener('scroll', () => {
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    let currentSection = '';
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (scrollY >= (sectionTop - 200)) {
+            currentSection = section.getAttribute('id');
+        }
+    });
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSection}`) {
+            link.classList.add('active');
+        }
+    });
+}); // ✅ AGORA FECHOU CORRETAMENTE
+
+// ===== MENU LATERAL =====
 const menuIcon = document.querySelector('.fa-notdog-duo');
 const sidebar = document.getElementById('sidebar');
 const closeBtn = document.getElementById('close-sidebar');
-
 
 // Abrir menu lateral
 menuIcon.addEventListener('click', () => {

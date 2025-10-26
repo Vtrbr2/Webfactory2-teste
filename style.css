@@ -753,32 +753,20 @@ header {
   position: relative; /* Importante para o menu dropdown */
 }
 
+
+
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--text-primary);
+        }
+aq
 /* Efeito de scroll que seu JS adiciona */
 .navbar.scrolled {
   background-color: #111; /* Fica mais escuro ao rolar */
   box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
-/* --- Logo --- */
-.logo-container {
-  display: flex;
-  align-items: center;
-}
-.logo-link {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: #fff;
-}
-.logo {
-  font-size: 1.8rem;
-  font-weight: bold;
-  margin-right: 10px;
-}
-.logo-text {
-  font-size: 1.2rem;
-  font-weight: 500;
-}
+
 
 /* --- Links do Desktop (escondidos no mobile) --- */
 .desktop-links {

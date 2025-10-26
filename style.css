@@ -833,8 +833,18 @@ img {
 
   /* 2. Esconde os links de navegação */
   .nav-links {
-    display: none; /* Escondido até ser ativado */
-    
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    width: 100%;
+    background-color: #34495e;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+    z-index: 10; /* garante que fique acima de tudo */
+  }    
     /* Layout do menu mobile */
     position: absolute;
     top: 68px; /* Altura do header (ajuste se mudar o padding) */

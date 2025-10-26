@@ -6,8 +6,10 @@
   --dark-bg: #101010;
   --light-dark-bg: #1b1b1b;
   --primary-text: #e0e0e0;
-  --secondary-text: #acacac;
   --text-secondary: #a0a3bd;
+  --primary-color: #5865F2;
+  --secondary-color: #7c3aed;
+  --border-color: rgba(255, 255, 255, 0.1);
 }
 * {
        margin: 0;

@@ -839,3 +839,35 @@ body.dark-mode .faq-answer {
 .faq-item.active .faq-question i {
     transform: rotate(180deg);
     }
+/*Botao flutuante WhatsApp by vitorrrr*/
+.WhatsApp-flot{
+position:fixed;
+width:60px;
+height:60px;
+bottom:40px;
+right:40px;
+background-color:#25d366;
+color:#FFF;
+border-radius:50px;
+text-align:center;
+font-size:30px;
+box-shadow: 1px 1px 2px #888;
+z-index:1000;
+align-items: center;
+justify-content: center;
+display: flex;
+text-decoration: none;
+}
+/* Ajustes para permitir arrastar e aparência ao arrastar */
+.WhatsApp-flot {
+  touch-action: none;       /* importante: impede o comportamento nativo de scroll ao arrastar */
+  cursor: grab;
+  transition: box-shadow 0.15s ease;
+  /* se tiver right/bottom no CSS original, o JS vai sobrescrever para usar left/top */
+}
+
+.WhatsApp-flot.dragging {
+  cursor: grabbing;
+  box-shadow: 6px 8px 20px rgba(0,0,0,0.35);
+  transition: none; /* remove transições durante o drag para ficar responsivo */
+   }

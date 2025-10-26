@@ -1,3 +1,12 @@
+// ===== FAQ interativo =====
+document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+        const item = button.parentElement;
+        item.classList.toggle('active');
+    });
+});
+
+
 // ===== ATUALIZAR NAVBAR ATIVA =====
         window.addEventListener('scroll', () => {
             const sections = document.querySelectorAll('section');
@@ -68,10 +77,3 @@ const currentYearElement = document.getElementById('currentYear');
 if (currentYearElement) {
     currentYearElement.innerText = new Date().getFullYear();
     }
-// ===== FAQ interativo =====
-document.querySelectorAll('.faq-question').forEach(button => {
-    button.addEventListener('click', () => {
-        const item = button.parentElement;
-        item.classList.toggle('active');
-    });
-});

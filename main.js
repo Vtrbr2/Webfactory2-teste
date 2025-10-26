@@ -28,6 +28,8 @@ document.querySelectorAll('.faq-question').forEach(button => {
                     link.classList.add('active');
                 }
             });
+        }};     
+            
             // Seleciona elementos
 const menuIcon = document.querySelector('.fa-notdog-duo');
 const sidebar = document.getElementById('sidebar');

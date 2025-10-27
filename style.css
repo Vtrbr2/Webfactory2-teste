@@ -259,7 +259,7 @@ nav {
     right: 0;
     width: 50vw;
     height: 50vh;
-    background:  #EE82EE;
+    background:  inherit;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;

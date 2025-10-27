@@ -995,6 +995,7 @@ width: 90%;
 border: 5px solid red;
 display: flex;
 overflow-x:auto;
+
 }
 
 .carrousel::-webkit-scrollbar{
@@ -1007,6 +1008,7 @@ align-items: center;
 justify-content:center;
 gap: 1em;
 animation: spin 5s infinite linear;
+padding-right: 1em;
 }
 
 @keyframes spin{

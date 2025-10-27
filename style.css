@@ -1020,16 +1020,18 @@ padding-right: 1em;
 flex: 0 0 3em; 
 height:2em;
 padding: 1em;
-background:transparent;
+background:cornflowerblue;
 font-size: 3rem;
 border-radius: .2em;
 text-align: center;
 align-content: center:
   }
+
 .card img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  display: block;
 }
 .card img {
   width: 100%;

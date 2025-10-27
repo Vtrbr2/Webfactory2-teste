@@ -989,55 +989,17 @@ text-decoration: none;
 
 
 /*carrosel*/
-.carousel {
-margin: 100px auto;
-width: 90%;
-border: 0.5px solid black;
-display: flex;
-overflow-x:hidden;
-
+.logo-carousel .swiper-slide {
+  display: flex;
+  align-items: center; /* Centraliza verticalmente */
+  justify-content: center; /* Centraliza horizontalmente */
 }
-
-.carrousel::-webkit-scrollbar{
-  display: none;
+.logo-carousel img {
+  max-height: 60px; /* Define uma altura máxima */
+  width: auto; /* Deixa a largura ajustar */
+  opacity: 0.7; /* Efeito comum: logos meio apagados */
+  transition: opacity 0.3s;
 }
-
-.group{
-display: flex;
-align-items: center;
-justify-content:center;
-gap: 1em;
-animation: spin 15s infinite linear;
-padding-right: 1em;
+.logo-carousel img:hover {
+  opacity: 1; /* Opacidade total ao passar o mouse */
 }
-
-@keyframes spin{
-  from {translate: 0;}
-  to {translate: -100%}
- } 
-
-.card{
-flex: 0 0 3em; 
-height:2em;
-padding: 1em;
-background:cornflowerblue;
-font-size: 3rem;
-border-radius: .2em;
-text-align: center;
-align-content: center:
-  }
-
-.card img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
-.card img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border-radius: 0.2em;
-  display: block;
-  }
-

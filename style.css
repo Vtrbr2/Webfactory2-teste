@@ -276,6 +276,7 @@ nav {
     opacity: 0;
   }
   .mobile-menu {
+    active: left 20px;
     display: block;
   }
 }

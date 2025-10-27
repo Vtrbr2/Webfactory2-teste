@@ -992,7 +992,7 @@ text-decoration: none;
 .carousel {
 margin: 100px auto;
 width: 90%;
-border: 5px solid red;
+border: 0.5px solid black;
 display: flex;
 overflow-x:auto;
 

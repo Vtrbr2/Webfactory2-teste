@@ -994,7 +994,7 @@ margin: 100px auto;
 width: 90%;
 border: 0.5px solid black;
 display: flex;
-overflow-x:auto;
+overflow-x:hidden;
 
 }
 

@@ -77,3 +77,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+const swiper = new Swiper('.logo-carousel', {
+  loop: true, // Faz o carrossel ser infinito
+  
+  // AQUI ESTÁ A MÁGICA:
+  autoplay: {
+    delay: 3000, // Tempo em milissegundos (3 segundos)
+    disableOnInteraction: false, // Continua tocando mesmo se o usuário mexer
+  },
+  
+  slidesPerView: 5,
+  spaceBetween: 30,
+});

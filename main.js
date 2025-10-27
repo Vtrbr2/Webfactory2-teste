@@ -8,45 +8,7 @@ document.querySelectorAll('.faq-question').forEach(button => {
 
 
 // ===== ATUALIZAR NAVBAR ATIVA =====
-window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    let currentSection = '';
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (scrollY >= (sectionTop - 200)) {
-            currentSection = section.getAttribute('id');
-        }
-    });
-    
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${currentSection}`) {
-            link.classList.add('active');
-        }
-    });
-}); // ✅ AGORA FECHOU CORRETAMENTE
 
-// ===== MENU LATERAL =====
-const menuIcon = document.querySelector('.fa-notdog-duo');
-const sidebar = document.getElementById('sidebar');
-const closeBtn = document.getElementById('close-sidebar');
-
-// Abrir menu lateral
-menuIcon.addEventListener('click', () => {
-    sidebar.classList.add('active');
-    menuIcon.classList.add('active');
-});
-
-
-// Fechar menu lateral
-closeBtn.addEventListener('click', () => {
-    sidebar.classList.remove('active');
-    menuIcon.classList.remove('active');
-});
 
 // Swiper carousel - apenas se existir
 const swiperElement = document.querySelector('.swiper');
@@ -180,14 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('pointerup', onPointerUp);
   document.addEventListener('pointercancel', onPointerUp);
 
-  // Reajusta limites quando a janela é redimensionada
-  window.addEventListener('resize', () => {
-    const r = btn.getBoundingClientRect();
-    const clamped = clampPosition(r.left, r.top, r.width, r.height);
-    btn.style.left = `${clamped.left}px`;
-    btn.style.top  = `${clamped.top}px`;
-  });
-});
+
 
 // ===== Menu Hambúrguer =====
 const hamburger = document.getElementById('hamburger');

@@ -215,9 +215,7 @@ img {
 
         
      /* ===== Links ===== */
-.nav-links {
-  display: flex;
-  lnav {
+nav {
   display: flex;
   justify-content: space-around;
   align-items: center;

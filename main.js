@@ -189,3 +189,32 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// ===== Menu Hambúrguer =====
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
+
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
+
+// ===== Ativar link ao rolar =====
+window.addEventListener('scroll', () => {
+  const sections = document.querySelectorAll('section');
+  const navItems = document.querySelectorAll('.nav-link');
+  
+  let currentSection = '';
+  
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 200;
+    if (scrollY >= sectionTop) {
+      currentSection = section.getAttribute('id');
+    }
+  });
+
+  navItems.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === `#${currentSection}`) {
+      link.classList.add('active');
+    }
+  });
+});

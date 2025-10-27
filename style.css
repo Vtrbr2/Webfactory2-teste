@@ -985,6 +985,9 @@ text-decoration: none;
   box-shadow: 6px 8px 20px rgba(0,0,0,0.35);
   transition: none; /* remove transições durante o drag para ficar responsivo */
    }
+
+
+
 /*carrosel*/
 .carousel {
 margin: 100px auto;
@@ -994,13 +997,23 @@ display: flex;
 overflow-x:auto;
 }
 
+.carrousel::-webkit-scrollbar{
+  display: none;
+}
+
 .group{
 display: flex;
 align-items: center;
 justify-content:center;
 gap: 1em;
-
+animation: spin 5s infinite linear;
 }
+
+@keyframes spin{
+  from {translate: 0;}
+  to {translate: -100%}
+ } 
+
 .card{
 flex: 0 0 5em; 
 height:5em;

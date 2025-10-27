@@ -991,6 +991,7 @@ margin: 100px auto;
 width: 90%;
 border: 5px solid red;
 display: flex;
+overflow-x:auto;
 }
 
 .group{
@@ -1001,7 +1002,8 @@ gap: 1em;
 
 }
 .card{
-flex: 0 0 5em;   height:5em;
+flex: 0 0 5em; 
+height:5em;
 padding: 1em;
 background:cornflowerblue;
 font-size: 3rem;

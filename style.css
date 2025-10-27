@@ -214,27 +214,57 @@ img {
         }
 
         .nav-links {
-            display: flex;
-            gap: 1.2rem;
-        }
+     /* ===== Links ===== */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+  transition: all 0.3s ease;
+}
 
-        .nav-link {
-            cursor: pointer;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: 0.3s;
-            font-weight: 500;
-        }
+.nav-link {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  position: relative;
+}
 
-        .nav-link:hover, .nav-link.active {
-            color: var(--text-primary);
-        }
+.nav-link:hover,
+.nav-link.active {
+  color: #00c3ff;
+}
 
-        .right-actions {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
+/* ===== Hambúrguer ===== */
+.hamburger {
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* ===== Responsivo ===== */
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    right: -100%;
+    flex-direction: column;
+    background: #111;
+    width: 200px;
+    padding: 20px;
+    border-radius: 10px 0 0 10px;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
 
 
 /* Hero */

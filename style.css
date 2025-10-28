@@ -1464,29 +1464,33 @@ body.light-mode .copyright {
   color: #555;
   border-top-color: #ddd;
 }
-/* === FORMULÁRIO DE CONTATO === */
+
+
+
+
+/* === FORMULÁRIO DE CONTATO (Estilo Footer) === */
 
 .form-container {
-  /* Usando o mesmo padding das outras seções */
+  /* Mantém o espaçamento da seção */
   padding: 80px 0;
 }
 
 .form-container form {
+  /* Centraliza o formulário */
   max-width: 600px;
   margin: 0 auto;
-  /* Usando o fundo de "card" do seu site */
-  background: var(--light-dark-bg);
-  padding: 2.5rem;
-  border-radius: 12px;
-  border: 1px solid var(--border-color);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  
+  /* Remove o estilo "card" (fundo, padding, borda, sombra) */
+  background: none;
+  padding: 0;
+  border: none;
+  box-shadow: none;
 }
 
 .form-container h1 {
   text-align: center;
   font-family: 'Josefin Sans', sans-serif;
   font-size: clamp(1.5rem, 5vw, 2.25rem);
-  /* Usando a cor de destaque do seu site */
   color: var(--light-pink-clr);
   margin-bottom: 1rem;
 }
@@ -1507,12 +1511,15 @@ body.light-mode .copyright {
 .input {
   width: 100%;
   padding: 1rem;
-  font-size: 1rem;
+  font-size: 16px; /* Tamanho do .subscribe-form */
+  
+  /* Estilo do .subscribe-form */
   color: var(--primary-text);
   background: transparent;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  outline: none;
+  border: 3px solid var(--pink-clr);
+  border-radius: 8px; /* Raio de borda (5px no original) */
+  outline: 0;
+  
   transition: border-color 0.3s ease;
 }
 
@@ -1525,69 +1532,54 @@ body.light-mode .copyright {
   transition: all 0.3s ease;
 }
 
-/* --- Animação do "Floating Label" --- */
-
-/* Move o label para cima quando o input está focado 
-  ou quando já está preenchido (graças ao 'required' e ':valid') 
-*/
+/* --- Animação "Floating Label" --- */
+/* (Ajustado para funcionar em um fundo transparente) */
 .input:focus + label,
 .input:valid + label {
-  top: -0.6rem;
+  top: -0.8rem; /* Ajustado para a borda de 3px */
   left: 0.75rem;
   font-size: 0.8rem;
   color: var(--light-pink-clr);
-  /* Fundo para "cortar" a borda do input */
-  background: var(--light-dark-bg);
+  
+  /* IMPORTANTE: Usa o fundo 'black' do body para "cortar" a borda */
+  background: black; 
   padding: 0 5px;
 }
 
-/* Destaque no input quando focado */
 .input:focus {
-  border-color: var(--light-pink-clr);
+  border-color: var(--light-blue-clr); /* Cor de foco diferente */
 }
 
-/* --- Botão Enviar --- */
+/* --- Botão Enviar (Estilo .subscribe-form) --- */
 
-/* O seu HTML usa <div class="btn">, então vamos estilizar
-  o input[type="submit"] dentro dele para PARECER
-  com a classe .btn original do seu site.
-*/
 .form-container .btn {
-  padding: 0; /* Remove padding do div */
+  padding: 0;
   box-shadow: none;
   background: none;
 }
 
 .form-container .btn input[type="submit"] {
   width: 100%;
-  /* Copiando estilos do .btn original */
   padding: 12px 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-  background: linear-gradient(
-    135deg,
-    var(--light-pink-clr) 30%,
-    var(--pink-clr) 70%,
-    var(--blue-clr) 100%
-  );
-  color: var(--primary-text);
+  
+  /* Estilo do .subscribe-form button */
+  background: transparent;
+  border: 3px solid var(--pink-clr);
+  color: var(--pink-clr); /* Texto na cor da borda */
+  font-size: 1.1rem; /* Um pouco maior que o input */
+
   border-radius: 8px;
-  border: 0;
   outline: 0;
-  font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: 1px;
   text-transform: capitalize;
   cursor: pointer;
-  transition: 0.5s;
+  transition: 0.5s ease;
 }
 
-/* Hover do botão */
+/* Hover do botão (inverte as cores) */
 .form-container .btn input[type="submit"]:hover {
-  background: linear-gradient(
-    135deg,
-    var(--light-pink-clr) 30%,
-    var(--pink-clr) 55%,
-    var(--blue-clr) 100%
-  );
+  background: var(--pink-clr);
+  color: var(--primary-text); /* Texto branco no hover */
   transform: translateY(-2px);
 }

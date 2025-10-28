@@ -142,31 +142,49 @@ const swiper = new Swiper('.logo-carousel', {
 
        //loader 
 
-// Seleciona o botão "Ver Modelos"
+// Seleciona os elementos principais
 const redirectButton = document.querySelector('.btn.shop-now');
-
-// Seleciona o overlay do loader
 const loaderOverlay = document.querySelector('.loader-overlay');
+const loaderText = document.querySelector('.loader-text'); // <-- Seleciona o elemento de texto
 
-// Adiciona um "ouvinte" de clique ao botão
+// Adiciona o "ouvinte" de clique ao botão
 redirectButton.addEventListener('click', function(event) {
   
-  // 1. Previne o clique padrão do link (para não redirecionar na hora)
+  // 1. Previne o redirecionamento imediato
   event.preventDefault(); 
-  
-  // 2. Pega a URL de destino guardada no botão
   const redirectUrl = this.href;
 
-  // 3. Mostra o overlay do loader (que estava com 'display: none')
-  // Usamos 'flex' porque foi como o CSS o definiu para centralizar
+  // 2. Limpa o texto (caso o usuário clique de novo) e mostra o overlay
+  loaderText.innerHTML = '';
   loaderOverlay.style.display = 'flex';
 
-  // 4. Espera 2 segundos (2000 ms) antes de redirecionar
+  // --- LÓGICA DE DIGITAÇÃO ---
+  
+  const textToType = "Redirecionado.....";
+  const typingSpeed = 100; // Velocidade em milissegundos por letra (ajuste se quiser)
+  let charIndex = 0;
+
+  function type() {
+    // Se ainda houver letras para digitar
+    if (charIndex < textToType.length) {
+      loaderText.innerHTML += textToType.charAt(charIndex);
+      charIndex++;
+      // Chama a si mesma para digitar a próxima letra
+      setTimeout(type, typingSpeed);
+    }
+  }
+  
+  // 3. Inicia a digitação
+  type();
+  
+  // --- FIM DA LÓGICA DE DIGITAÇÃO ---
+
+  // 4. Redireciona após o tempo total
+  // (A digitação vai demorar 17 * 100ms = 1.7 segundos)
+  // O seu tempo de 2 segundos (2000ms) é perfeito.
   setTimeout(function() {
-    // 5. Redireciona o usuário para a URL
     window.location.href = redirectUrl;
-  }, 2000); // 2000 milissegundos = 2 segundos. Ajuste este tempo se desejar.
+  }, 4000); // Tempo total de espera antes de redirecionar
+
 });
-
-
 

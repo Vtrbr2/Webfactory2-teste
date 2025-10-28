@@ -7,7 +7,7 @@ document.querySelectorAll('.faq-question').forEach(button => {
 });
 
 
-// ===== ATUALIZAR NAVBAR ATIVA =====
+
 
 
 // Swiper carousel - apenas se existir
@@ -35,12 +35,16 @@ if (swiperElement) {
     });
 }
 
+
 // Footer current year - apenas se existir
 const currentYearElement = document.getElementById('currentYear');
 if (currentYearElement) {
     currentYearElement.innerText = new Date().getFullYear();
     }
-//nav slide
+             
+
+                   //nav slide
+
 // Espera o documento carregar para rodar o script
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -77,7 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
-//carrosel
+             //=======    CARROSEL.  ==========
+
+
+
 const swiper = new Swiper('.logo-carousel', {
             // Quantidade de slides por visualização (pode ser 'auto')
             slidesPerView: 5,
@@ -120,27 +127,17 @@ const swiper = new Swiper('.logo-carousel', {
                 }
             }
         });
+     
+
 // ===== EFEITO DE SCROLL (fade-in nos cards e textos) =====
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("visible");
-                }
-            });
-        }, { threshold: 0.2 });
+           const observer = new IntersectionObserver(entries => {
+                 entries.forEach(entry => {
+                   if (entry.isIntersecting) {
+                       entry.target.classList.add("visible");
+                  }
+              });
+             }, { threshold: 0.2 });
 
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
        
-        // ===== FUNÇÃO DE NOTIFICAÇÃO VISUAL =====
-        function showNotification(message) {
-            const box = document.getElementById("notification");
-            if (!box) return;
-            box.textContent = message;
-            box.classList.add("show");
-            setTimeout(() => box.classList.remove("show"), 3000);
-        }
-// ===== MENSAGEM AUTOMÁTICA (exemplo) =====
-        window.addEventListener("load", () => {
-            showNotification("Bem-vindo à AI Web Factory 🚀");
-        });

@@ -1218,9 +1218,8 @@ animation: fixar-logo 2s linear infinite;
   }
 }
 /*tema no nav-link by vitorrrrodrigues*/
-/* From Uiverse.io by JustCode14 */
-/* Theme Switch */
-/* The switch - the box around the slider */
+/* --- PARTE A: ESTILO DO BOTÃO (Switch) --- */
+/* (O código que você me passou, do Uiverse.io) */
 .switch {
   font-size: 17px;
   position: relative;
@@ -1231,14 +1230,12 @@ animation: fixar-logo 2s linear infinite;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Hide default HTML checkbox */
 .switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-/* The slider */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -1314,26 +1311,156 @@ animation: fixar-logo 2s linear infinite;
 .switch input:checked ~ .slider .cloud {
   opacity: 1;
 }
-/* --- ESTILOS DO MODO CLARO --- */
 
-/* Quando o body TIVER a classe 'light-mode'
-  mude o fundo para branco e o texto para preto.
-*/
-body.light-mode {
-  background-color: #ffffff;
-  color: #121212;
+/* --- PARTE B: FUNCIONALIDADE DO TEMA (MODO CLARO) --- */
+
+/* Adiciona uma transição suave para a troca de cor */
+body,
+.navbar,
+.product-card,
+.footer-content,
+.top-p,
+.nav-mobile-menu,
+.faq-item,
+.faq-answer {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Você pode (e deve) ser mais específico.
-  Por exemplo, mude a cor da sua Nav Link no modo claro:
-*/
-body.light-mode .sua-nav-link {
+/* Estilos Padrão do MODO CLARO */
+body.light-mode {
+  background-color: #ffffff; /* Fundo principal branco */
+  color: #121212; /* Texto principal preto */
+}
+
+/* --- Barra do Topo --- */
+body.light-mode .top-p {
   background-color: #f0f0f0;
   color: #333;
 }
+body.light-mode .top-p a {
+  color: #007bff;
+}
 
-/* Mude a cor dos seus títulos no modo claro */
+/* --- Navbar --- */
+body.light-mode .navbar {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Sombra para destacar no branco */
+}
+body.light-mode .logo-text {
+  color: #000000;
+}
+body.light-mode .nav-desktop a {
+  color: #333;
+}
+body.light-mode .nav-desktop a.nav-button {
+  background-color: #007bff; /* Azul como exemplo */
+  color: #ffffff;
+}
+body.light-mode .nav-toggle svg path {
+  stroke: #000000; /* Ícone de menu (hamburger) preto */
+}
+
+/* --- Menu Mobile --- */
+body.light-mode .nav-mobile-menu {
+  background-color: #ffffff;
+}
+body.light-mode .nav-mobile-menu a {
+  color: #333;
+}
+body.light-mode .nav-close {
+  color: #333;
+}
+
+/* --- Seções e Texto Geral --- */
 body.light-mode h1,
-body.light-mode h2 {
+body.light-mode h2,
+body.light-mode h3,
+body.light-mode h4 {
+  color: #000000;
+}
+body.light-mode p {
+  color: #333;
+}
+body.light-mode #hero {
+  background-color: #f9f9f9; /* Fundo levemente cinza para destacar */
+}
+
+/* --- Cards de Serviços --- */
+body.light-mode .product-card {
+  background-color: #f9f9f9;
+  border: 1px solid #eeeeee;
+}
+body.light-mode .product-card .product-title {
+  color: #111;
+}
+body.light-mode .product-card .product-price {
+  color: #555;
+}
+
+/* --- Seção de Blog --- */
+body.light-mode .blog-item {
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+body.light-mode .blog-content h3 {
+  color: #111;
+}
+body.light-mode .read-more {
+  color: #007bff;
+}
+
+/* --- Seção FAQ --- */
+body.light-mode .faq-section {
+  background-color: #f9f9f9;
+}
+body.light-mode .faq-item {
+  background-color: #ffffff;
+  border: 1px solid #eee;
+}
+body.light-mode .faq-question {
+  color: #111;
+}
+body.light-mode .faq-question i {
+  color: #111;
+}
+body.light-mode .faq-answer {
+  background-color: #fdfdfd;
+  border-top: 1px solid #eee;
+}
+
+/* --- Seção Facilities --- */
+body.light-mode .facility-item {
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
+}
+body.light-mode .facility-item .icon {
+  color: #007bff; /* Cor do ícone */
+}
+
+/* --- Footer (Rodapé) --- */
+body.light-mode .footer-content {
+  background-color: #f0f0f0;
+  color: #333;
+}
+body.light-mode .footer-column h3 {
   color: #000;
+}
+body.light-mode .footer-links a {
+  color: #333;
+}
+body.light-mode .footer-links a i.fab {
+  color: #333;
+}
+body.light-mode .subscribe-form input {
+  background-color: #ffffff;
+  color: #111;
+  border: 1px solid #ccc;
+}
+body.light-mode .subscribe-form button {
+  background-color: #007bff;
+  color: #fff;
+}
+body.light-mode .copyright {
+  color: #555;
+  border-top-color: #ddd;
 }

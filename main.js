@@ -141,12 +141,32 @@ const swiper = new Swiper('.logo-carousel', {
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
        //loader 
-document.getElementById("verModelosBtn").addEventListener("click", function(event) {
-  event.preventDefault();
-  const loaderContainer = document.getElementById("loaderContainer");
-  loaderContainer.style.display = "flex";
-  setTimeout(() => {
-    window.location.href = this.href;
-  }, 2500); // 2.5 segundos antes do redirecionamento
+
+// Seleciona o botão "Ver Modelos"
+const redirectButton = document.querySelector('.btn.shop-now');
+
+// Seleciona o overlay do loader
+const loaderOverlay = document.querySelector('.loader-overlay');
+
+// Adiciona um "ouvinte" de clique ao botão
+redirectButton.addEventListener('click', function(event) {
+  
+  // 1. Previne o clique padrão do link (para não redirecionar na hora)
+  event.preventDefault(); 
+  
+  // 2. Pega a URL de destino guardada no botão
+  const redirectUrl = this.href;
+
+  // 3. Mostra o overlay do loader (que estava com 'display: none')
+  // Usamos 'flex' porque foi como o CSS o definiu para centralizar
+  loaderOverlay.style.display = 'flex';
+
+  // 4. Espera 2 segundos (2000 ms) antes de redirecionar
+  setTimeout(function() {
+    // 5. Redireciona o usuário para a URL
+    window.location.href = redirectUrl;
+  }, 2000); // 2000 milissegundos = 2 segundos. Ajuste este tempo se desejar.
 });
+
+
 

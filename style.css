@@ -1109,16 +1109,16 @@ body.dark-mode .faq-answer {
   animation: animar 2s linear infinite;
 }
 
-@keyframes animar {
+@keyframes fixar-logo {
   0% {
-    transform: rotate(0deg);
-    filter: hue-rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg);
   }
   100% {
-    transform: rotate(360deg);
-    filter: hue-rotate(360deg);
+    /* Roda -360deg (ao contrário) para cancelar a rotação de 360deg do pai */
+    transform: translate(-50%, -50%) rotate(-360deg);
   }
 }
+
 
 .loader::before {
   content: '';
@@ -1168,7 +1168,9 @@ body.dark-mode .faq-answer {
   width: 100px;  /* Tamanho da logo (ajuste se necessário) */
   height: 100px;
   object-fit: contain; /* Garante que a logo não distorça */
-  
+  /* Adicione esta linha no seu seletor .loader-logo */
+animation: fixar-logo 2s linear infinite;
+
   /* Centraliza a logo no loader */
   top: 50%;
   left: 50%;

@@ -1110,6 +1110,7 @@ text-decoration: none;
             padding: 1rem;
             border: 1px solid var(--border-color);
             transition: 0.3s;
+             border-radius: 10px;
         }
 
         .product-card:hover {

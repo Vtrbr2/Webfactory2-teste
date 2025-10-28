@@ -310,20 +310,6 @@ img {
     color: #aeff00; /* Destaque ao passar o mouse */
 }
 
-/* Botão "Sign in" dentro do menu mobile */
-.nav-mobile-menu .nav-button {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 1rem; /* Espaçamento abaixo do botão */
-}
-
-
-/* --- Estilos para Desktop (Telas maiores) --- */
-@media (min-width: 900px) {
-    /* Esconde o botão 'hamburger' */
-    .nav-toggle {
-        display: none;
-    }
     
      /* ===== Links ===== */
 

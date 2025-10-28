@@ -1105,4 +1105,51 @@ body.dark-mode .faq-answer {
   width: 150px;
   height: 150px;
   background: linear-gradient(45deg, transparent, transparent 40%, #e5f043);
+ border-radius:50%;
+animation:animar 2s linear infinite;
 }
+
+
+@keyframes animar {
+  /*
+    At the start of the animation (0%), the element is not rotated.
+  */
+  0% {
+    transform: rotate(0deg);
+  filter: hue-rotate(0deg);
+  }
+ 
+  /*
+    At the end of the animation (100%), the element has been rotated a full circle.
+  */
+  100% {
+    transform: rotate(360deg);
+  filter: hue-rotate(360deg);
+  }
+}
+
+
+
+
+
+
+
+
+.loader::before{
+content: '';
+position: absolute;
+inset: 6px;
+border-radius: 50%;
+background:#040305;
+z-index:2;
+}
+
+.loader::after{
+content: '';
+position: absolute;
+inset: 0px;
+border-radius: 50%;
+background:linear-gradient(45deg, transparent, transparent 40%, #e5f043;
+filter:blur(30px);    
+}
+

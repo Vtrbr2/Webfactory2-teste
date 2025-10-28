@@ -77,15 +77,46 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+//carrosel
 const swiper = new Swiper('.logo-carousel', {
-  loop: true, // Faz o carrossel ser infinito
-  
-  // AQUI ESTÁ A MÁGICA:
-  autoplay: {
-    delay: 3000, // Tempo em milissegundos (3 segundos)
-    disableOnInteraction: false, // Continua tocando mesmo se o usuário mexer
-  },
-  
-  slidesPerView: 5,
-  spaceBetween: 30,
-});
+            // Quantidade de slides por visualização (pode ser 'auto')
+            slidesPerView: 5,
+            
+            // Espaço entre os slides
+            spaceBetween: 40,
+            
+            // Loop infinito
+            loop: true,
+
+            // Ativa o modo "Free" que não trava em slides (ideal para ticker)
+            freeMode: true,
+
+            // Configuração do Autoplay (o que faz ele "passar sozinho")
+            autoplay: {
+                delay: 1, // Delay de 1 milissegundo entre transições
+                disableOnInteraction: false, // Não para de rodar se o usuário mexer
+                pauseOnMouseEnter: true, // PAUSA quando o mouse está em cima
+            },
+            
+            // Velocidade da transição (quanto mais alto, mais lento o scroll)
+            speed: 4000, // 4 segundos para atravessar
+
+            // Configuração de "Breakpoints" para ser responsivo
+            breakpoints: {
+                // Quando a tela for menor que 640px
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20
+                },
+                // Quando a tela for menor que 768px
+                768: {
+                    slidesPerView: 3,
+                    spaceBetween: 30
+                },
+                // Quando a tela for menor que 1024px
+                1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 40
+                }
+            }
+        });

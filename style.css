@@ -310,7 +310,42 @@ img {
     color: #aeff00; /* Destaque ao passar o mouse */
 }
 
-    
+/* ===== Fade-in suave ===== */
+.nav-button {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+    animation-delay: 0.2s;
+}
+
+.nav-mobile-menu {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.nav-mobile-menu.is-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.nav-mobile-menu a {
+    opacity: 0;
+    transform: translateY(-5px);
+    animation: fadeInUp 0.5s ease forwards;
+    animation-delay: 0.3s;
+}
+
+/* ===== Keyframes ===== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+  }    
      
 
 

@@ -1164,9 +1164,9 @@ body.dark-mode .faq-answer {
 
 /* A logo DENTRO do loader */
 .loader-logo {
-  position: absolute;
-  width: 110px;  /* Tamanho da logo (ajuste se necessário) */
-  height: 110px;
+  position: fixed;
+  width: 100px;  /* Tamanho da logo (ajuste se necessário) */
+  height: 100px;
   object-fit: contain; /* Garante que a logo não distorça */
   
   /* Centraliza a logo no loader */

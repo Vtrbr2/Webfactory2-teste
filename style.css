@@ -258,17 +258,16 @@ img {
 /* --- Estilos do menu mobile (popup da imagem 2) --- */
 
 .nav-mobile-menu {
-    /* Estado inicial: escondido */
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+        /* Escondido por padrão */
+    display: none; 
 
-    /* Posicionamento e estilo mantidos */
+    /* Posicionamento */
     position: absolute;
-    top: calc(100% + 10px);
+    top: calc(100% + 10px); /* Logo abaixo da barra de navegação */
     right: 1.5rem;
-    background-color: #1c1c1e;
+    
+    /* Aparência */
+    background-color: #1c1c1e; /* Fundo do popup */
     border-radius: 16px;
     padding: 1rem;
     width: 280px;
@@ -276,12 +275,10 @@ img {
     z-index: 100;
 }
 
-/* Quando o menu estiver ativo */
+/* Classe que o JavaScript vai adicionar para mostrar o menu */
 .nav-mobile-menu.is-active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
+    display: block;
+  }
 
 /* Botão de fechar (X) */
 .nav-close {

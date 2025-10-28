@@ -1198,3 +1198,22 @@ animation: fixar-logo 2s linear infinite;
   font-size: 1.2em;
   font-weight: bold;
 }
+/* Adiciona um cursor piscando (|) no final do texto 
+  para simular a digitação.
+*/
+.loader-text::after {
+  content: '|';
+  margin-left: 5px;
+  opacity: 1;
+  animation: blink 0.7s infinite;
+}
+
+/* Animação do cursor piscando */
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}

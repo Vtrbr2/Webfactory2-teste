@@ -990,32 +990,75 @@ text-decoration: none;
 
 /*carrosel*/
 
-        /* O Carrossel */
-        .swiper.logo-carousel {
-            width: 100%;
-            height: 100px; /* Altura do container do carrossel */
-            overflow: hidden; /* Garante que nada vaze */
-        }
+        /* --- INÍCIO DO CSS DO CARROSSEL DE LOGOS --- */
 
-        .swiper-slide {
-            width: auto; /* Deixa a largura do slide se ajustar ao conteúdo */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+/* 1. O container principal que 'corta' o conteúdo */
+.logo-carousel {
+    width: 100%;
+    overflow: hidden; /* Essencial: esconde o conteúdo que sai da tela */
 
-        .swiper-slide img {
-            max-height: 60px; /* Altura máxima para todos os logos */
-            width: auto; /* Largura automática para manter proporção */
-            
-            /* Efeito profissional: cinza, e colorido no hover */
-            filter: grayscale(100%);
-            opacity: 0.7;
-            transition: all 0.3s ease;
-        }
+    /* ISSO IMPEDE O USUÁRIO DE ARRASTAR */
+    user-select: none; /* Impede a seleção de texto/imagem */
+    -webkit-user-select: none; /* Para navegadores Safari/Chrome */
+    -moz-user-select: none; /* Para Firefox */
+    -ms-user-select: none; /* Para IE/Edge */
+    
+    /* (Opcional) Efeito profissional de 'fade' nas laterais */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+}
 
-        .swiper-slide img:hover {
-            filter: grayscale(0%);
-            opacity: 1;
-            transform: scale(1.1); /* Efeito de zoom leve */
-          }
+/* 2. O 'track' que segura e anima todos os logos */
+.swiper-wrapper {
+    width: fit-content; /* A largura se ajusta ao total de logos */
+    display: flex;
+    flex-wrap: nowrap; /* Garante que fique tudo em uma linha */
+    
+    /* A MÁGICA DA ANIMAÇÃO INFINITA */
+    /* 'scroll' é o nome da animação (definida abaixo) */
+    /* '40s' é a duração. Aumente para ir mais devagar, diminua para ir mais rápido. */
+    /* 'linear' garante velocidade constante */
+    /* 'infinite' faz com que nunca pare */
+    animation: scroll 40s linear infinite;
+}
+
+/* 3. A Animação (Keyframes) */
+@keyframes scroll {
+    0% {
+        /* Começa na posição 0 */
+        transform: translateX(0);
+    }
+    100% {
+        /* Termina movido 50% para a esquerda */
+        /* Isso SÓ funciona se você duplicou os logos no HTML (veja o aviso abaixo) */
+        transform: translateX(-50%);
+    }
+}
+
+/* 4. Estilo de cada logo individual */
+.swiper-slide {
+    padding: 0 30px; /* Espaçamento entre os logos */
+    box-sizing: content-box; /* Garante que o padding não quebre o layout */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; /* Impede que os logos encolham */
+}
+
+.swiper-slide img {
+    max-height: 60px; /* Padroniza a altura */
+    width: auto; /* Mantém a proporção */
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+/* 5. Efeito de hover (opcional, mas recomendado) */
+/* A animação NÃO VAI PARAR, mas o logo ficará colorido */
+.swiper-slide img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* --- FIM DO CSS DO CARROSSEL DE LOGOS --- */

@@ -454,12 +454,28 @@
 
           <div class="footer-column">
             <h3>Receba atualizações e novidades</h3>
-            <form class="subscribe-form">
-              <input type="email" placeholder="inscreva-se Com seu Email" />
-              <button>
-                <i class="fas fa-arrow-right"></i>
-              </button>
+            <section class="form-container">
+        <div class="container">
+            <form method="post" action="envia.php">
+                <h1>Entre em contato</h1>
+                <p>Preencha o formulário abaixo e entraremos em contato com você</p>
+                <div class="input-single">
+                    <input class="input" type="text" id="nome" name="nome" required autocomplete="off">
+                    <label for="nome">Seu nome completo</label>
+                </div>
+                <div class="input-single">
+                    <input class="input" type="text" id="email" name="email" required autocomplete="off">
+                    <label for="email">Seu e-mail</label>
+                </div>
+                <div class="input-single">
+                    <input class="input" type="text" id="telefone" name="telefone" required autocomplete="off">
+                    <label for="telefone">Seu telefone</label>
+                </div>
+                <div class="btn"><input type="submit" value="Enviar"></div>
             </form>
+        </div>
+              <!--container-->
+            </section>
           </div>
 
           <div class="footer-column">

@@ -1464,3 +1464,130 @@ body.light-mode .copyright {
   color: #555;
   border-top-color: #ddd;
 }
+/* === FORMULÁRIO DE CONTATO === */
+
+.form-container {
+  /* Usando o mesmo padding das outras seções */
+  padding: 80px 0;
+}
+
+.form-container form {
+  max-width: 600px;
+  margin: 0 auto;
+  /* Usando o fundo de "card" do seu site */
+  background: var(--light-dark-bg);
+  padding: 2.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.form-container h1 {
+  text-align: center;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: clamp(1.5rem, 5vw, 2.25rem);
+  /* Usando a cor de destaque do seu site */
+  color: var(--light-pink-clr);
+  margin-bottom: 1rem;
+}
+
+.form-container p {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-bottom: 2.5rem;
+}
+
+/* --- Estilo dos Campos (Input) --- */
+
+.input-single {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.input {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  color: var(--primary-text);
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.input-single label {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  color: var(--text-secondary);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+/* --- Animação do "Floating Label" --- */
+
+/* Move o label para cima quando o input está focado 
+  ou quando já está preenchido (graças ao 'required' e ':valid') 
+*/
+.input:focus + label,
+.input:valid + label {
+  top: -0.6rem;
+  left: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--light-pink-clr);
+  /* Fundo para "cortar" a borda do input */
+  background: var(--light-dark-bg);
+  padding: 0 5px;
+}
+
+/* Destaque no input quando focado */
+.input:focus {
+  border-color: var(--light-pink-clr);
+}
+
+/* --- Botão Enviar --- */
+
+/* O seu HTML usa <div class="btn">, então vamos estilizar
+  o input[type="submit"] dentro dele para PARECER
+  com a classe .btn original do seu site.
+*/
+.form-container .btn {
+  padding: 0; /* Remove padding do div */
+  box-shadow: none;
+  background: none;
+}
+
+.form-container .btn input[type="submit"] {
+  width: 100%;
+  /* Copiando estilos do .btn original */
+  padding: 12px 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(
+    135deg,
+    var(--light-pink-clr) 30%,
+    var(--pink-clr) 70%,
+    var(--blue-clr) 100%
+  );
+  color: var(--primary-text);
+  border-radius: 8px;
+  border: 0;
+  outline: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+/* Hover do botão */
+.form-container .btn input[type="submit"]:hover {
+  background: linear-gradient(
+    135deg,
+    var(--light-pink-clr) 30%,
+    var(--pink-clr) 55%,
+    var(--blue-clr) 100%
+  );
+  transform: translateY(-2px);
+}

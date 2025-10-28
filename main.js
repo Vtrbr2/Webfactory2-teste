@@ -132,3 +132,15 @@ const swiper = new Swiper('.logo-carousel', {
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
        
+        // ===== FUNÇÃO DE NOTIFICAÇÃO VISUAL =====
+        function showNotification(message) {
+            const box = document.getElementById("notification");
+            if (!box) return;
+            box.textContent = message;
+            box.classList.add("show");
+            setTimeout(() => box.classList.remove("show"), 3000);
+        }
+// ===== MENSAGEM AUTOMÁTICA (exemplo) =====
+        window.addEventListener("load", () => {
+            showNotification("Bem-vindo à AI Web Factory 🚀");
+        });

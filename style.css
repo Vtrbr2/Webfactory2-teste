@@ -33,7 +33,7 @@ html {
 }
 
 
-
+}
 h1,
 h2,
 h3,
@@ -426,39 +426,6 @@ img {
     text-align: center;
     margin-bottom: 1rem; /* Espaçamento abaixo do botão */
 }
-
-
-/* --- Estilos para Desktop (Telas maiores) --- */
-@media (min-width: 900px) {
-    /* Esconde o botão 'hamburger' */
-    .nav-toggle {
-        display: none;
-    }
-    
-    /* Esconde o menu mobile (segurança extra) */
-    .nav-mobile-menu {
-        display: none !important;
-    }
-
-    /* Mostra a navegação de desktop */
-    .nav-desktop {
-        display: flex;
-        align-items: center;
-        gap: 1.5rem; /* Espaçamento entre os links */
-    }
-
-    .nav-desktop a {
-        color: white;
-        text-decoration: none;
-        font-size: 0.9rem;
-        font-weight: 500;
-    }
-
-    /* Botão 'Sign in' no desktop não precisa ser separado */
-    .nav-desktop .nav-button {
-        margin-left: 1rem;
-    }
-  }
 
 
 

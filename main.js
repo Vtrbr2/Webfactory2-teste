@@ -140,4 +140,13 @@ const swiper = new Swiper('.logo-carousel', {
 
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-       
+       //loader 
+document.getElementById("verModelosBtn").addEventListener("click", function(event) {
+  event.preventDefault();
+  const loaderContainer = document.getElementById("loaderContainer");
+  loaderContainer.style.display = "flex";
+  setTimeout(() => {
+    window.location.href = this.href;
+  }, 2500); // 2.5 segundos antes do redirecionamento
+});
+

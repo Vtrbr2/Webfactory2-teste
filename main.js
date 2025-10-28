@@ -188,3 +188,23 @@ redirectButton.addEventListener('click', function(event) {
 
 });
 
+//troca de tema 
+
+
+// Seleciona o input (checkbox) do botão
+const themeSwitch = document.getElementById('theme-switch');
+
+// Adiciona um "ouvinte" para o evento de 'mudança' (clique)
+themeSwitch.addEventListener('change', function() {
+  // 'this.checked' será 'true' se o modo claro (sol) estiver ativo
+  // e 'false' se o modo escuro (lua) estiver ativo.
+  
+  if (this.checked) {
+    // Se marcou (modo claro), adiciona a classe 'light-mode' ao body
+    document.body.classList.add('light-mode');
+  } else {
+    // Se desmarcou (modo escuro), remove a classe 'light-mode' do body
+    document.body.classList.remove('light-mode');
+  }
+});
+

@@ -1667,3 +1667,64 @@ body.light-mode .copyright {
 .curso-card {
   scroll-snap-align: start;
 }
+
+    /* ===== TELA DE BOAS-VINDAS ===== */
+#welcome-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: radial-gradient(circle at center, #000, #050505, #080808);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+.welcome-content {
+  text-align: center;
+  color: white;
+  animation: fadeIn 1.5s ease forwards;
+}
+
+.welcome-logo {
+  font-size: 3.5rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #a632c0, #d65ce3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+  animation: glow 2s infinite alternate;
+}
+
+.welcome-text {
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.welcome-text span {
+  color: #b04eff;
+  font-weight: 600;
+}
+
+/* Animações */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #a632c0; }
+  to { text-shadow: 0 0 25px #d65ce3, 0 0 40px #d65ce3; }
+}
+
+/* Esconde a tela quando sair */
+#welcome-screen.hide {
+  opacity: 0;
+  pointer-events: none;
+  }

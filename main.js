@@ -253,3 +253,13 @@ if (cursosCarousel) {
   cursosCarousel.addEventListener("mouseenter", stopAutoScroll);
   cursosCarousel.addEventListener("mouseleave", startAutoScroll);
 }
+// ===== WELCOME ANIMAÇÃO =====
+window.addEventListener("load", () => {
+  const welcomeScreen = document.getElementById("welcome-screen");
+
+  // Exibe por 2.5 segundos e depois remove
+  setTimeout(() => {
+    welcomeScreen.classList.add("hide");
+    setTimeout(() => welcomeScreen.remove(), 1000);
+  }, 2500);
+});

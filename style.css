@@ -1583,3 +1583,87 @@ body.light-mode .copyright {
   color: var(--primary-text); /* Texto branco no hover */
   transform: translateY(-2px);
 }
+
+/* ======= SEÇÃO DE CURSOS ======= */
+.cursos-carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 25px;
+  padding-bottom: 15px;
+}
+
+.cursos-carousel::-webkit-scrollbar {
+  height: 8px;
+}
+
+.cursos-carousel::-webkit-scrollbar-thumb {
+  background: var(--light-pink-clr);
+  border-radius: 10px;
+}
+
+.curso-card {
+  flex: 0 0 300px;
+  background: var(--light-dark-bg);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.curso-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+}
+
+.curso-card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  object-fit: cover;
+  height: 180px;
+}
+
+.curso-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: var(--light-pink-clr);
+}
+
+.curso-card p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 15px;
+}
+
+/* Botões de navegação */
+.carousel-nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.carousel-nav button {
+  background: var(--light-dark-bg);
+  border: 2px solid var(--light-pink-clr);
+  color: var(--light-pink-clr);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.carousel-nav button:hover {
+  background: var(--dark-bg);
+  transform: scale(1.1);
+}
+.cursos-carousel {
+  scroll-snap-type: x mandatory;
+}
+
+.curso-card {
+  scroll-snap-align: start;
+}

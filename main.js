@@ -208,3 +208,48 @@ themeSwitch.addEventListener('change', function() {
   }
 });
 
+// ===== Carrossel Automático com Pausa ao Hover =====
+const cursosCarousel = document.querySelector(".cursos-carousel");
+const prevBtn = document.querySelector(".swiper-button-prev");
+const nextBtn = document.querySelector(".swiper-button-next");
+
+let autoScroll;
+
+// Funções de rolagem manual
+if (cursosCarousel && prevBtn && nextBtn) {
+  prevBtn.addEventListener("click", () => {
+    cursosCarousel.scrollBy({ left: -320, behavior: "smooth" });
+  });
+
+  nextBtn.addEventListener("click", () => {
+    cursosCarousel.scrollBy({ left: 320, behavior: "smooth" });
+  });
+}
+
+// ===== Auto Scroll =====
+function startAutoScroll() {
+  autoScroll = setInterval(() => {
+    cursosCarousel.scrollBy({ left: 320, behavior: "smooth" });
+
+    // Quando chegar no fim, volta ao início
+    if (
+      cursosCarousel.scrollLeft + cursosCarousel.clientWidth >=
+      cursosCarousel.scrollWidth - 10
+    ) {
+      cursosCarousel.scrollTo({ left: 0, behavior: "smooth" });
+    }
+  }, 3000); // tempo entre os slides (3s)
+}
+
+function stopAutoScroll() {
+  clearInterval(autoScroll);
+}
+
+// Inicia o auto scroll
+if (cursosCarousel) {
+  startAutoScroll();
+
+  // Pausa ao passar o mouse
+  cursosCarousel.addEventListener("mouseenter", stopAutoScroll);
+  cursosCarousel.addEventListener("mouseleave", startAutoScroll);
+}

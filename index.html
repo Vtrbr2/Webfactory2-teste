@@ -468,6 +468,46 @@
       </section>
     </main>
 
+    <section id="contact" class="form-container section-container">
+  <h1>Entre em contato</h1>
+  <p>Preencha o formulário abaixo e entraremos em contato com você em breve.</p>
+  
+  <form action="https://formsubmit.co/Iawebfactory.site@gmail.com" method="POST" autocomplete="off">
+    <!-- Nome -->
+    <div class="input-single">
+      <input type="text" name="name" class="input" required>
+      <label>Nome completo</label>
+    </div>
+
+    <!-- E-mail -->
+    <div class="input-single">
+      <input type="email" name="email" class="input" required>
+      <label>E-mail</label>
+    </div>
+
+    <!-- Telefone -->
+    <div class="input-single">
+      <input type="tel" name="phone" class="input" required pattern="[0-9]{8,15}">
+      <label>Número de telefone</label>
+    </div>
+
+    <!-- Assunto -->
+    <div class="input-single">
+      <input type="text" name="subject" class="input" required>
+      <label>Assunto</label>
+    </div>
+
+    <!-- Botão -->
+    <div class="btn">
+      <input type="submit" value="Enviar">
+    </div>
+    
+    <!-- Mensagem de sucesso (opcional Form Submit) -->
+    <input type="hidden" name="_next" value="https://seusite.com/obrigado.html">
+    <input type="hidden" name="_captcha" value="false">
+  </form>
+      </section>
+    
     <!-- Footer -->
     <footer class="footer-content">
       <div class="container">

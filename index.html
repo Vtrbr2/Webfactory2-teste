@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class=""> <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IA Web Factory - Sites Inteligentes, Resultados Reais</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'fundo-escuro': '#0d1117',   // Fundo principal (Preto/Ardósia)
+              'card-escuro': '#161b22',    // Fundo dos cards
+              'borda-divisao': '#30363d',  // Borda sutil
+              'roxo-principal': '#8b5cf6', // Roxo (Destaque)
+              'cta-magenta': '#db2777',   // Magenta/Rosa (Botões principais)
+              'texto-claro': '#e6edf3',   // Texto principal (Branco)
+              'texto-cinza': '#848d97',   // Texto secundário (Cinza)
+
+              /* Cores para o Modo Claro */
+              'fundo-claro': '#ffffff',
+              'card-claro': '#f1f5f9',
+              'borda-clara': '#e2e8f0',
+              'texto-escuro': '#0d1117',
+              'texto-cinza-claro': '#475569',
+            }
+          }
+        }
+      }
+    </script>
+    
+    <style type="text/tailwindcss">
+      /* Estilos personalizados com Tailwind */
+      body {
+        font-family: 'Inter', sans-serif;
+        /* Transição suave de cores ao trocar de tema */
+        @apply bg-fundo-escuro text-texto-claro transition-colors duration-300;
+      }
+
+      /* TEMA CLARO */
+      body.light-mode {
+        @apply bg-fundo-claro text-texto-escuro;
+      }
+      body.light-mode .top-bar {
+        @apply bg-card-claro text-texto-escuro;
+      }
+      body.light-mode .navbar,
+      body.light-mode .nav-mobile {
+        @apply bg-fundo-claro border-borda-clara;
+      }
+      body.light-mode .logo-text,
+      body.light-mode .nav-toggle,
+      body.light-mode .nav-close,
+      body.light-mode .nav-desktop a,
+      body.light-mode .nav-mobile-link {
+        @apply text-texto-escuro;
+      }
+      body.light-mode .nav-desktop a:hover,
+      body.light-mode .nav-mobile-link:hover {
+        @apply text-roxo-principal;
+      }
+      body.light-mode .section-subtitle,
+      body.light-mode .section-description,
+      body.light-mode .hero p,
+      body.light-mode .faq-answer p {
+        @apply text-texto-cinza-claro;
+      }
+      body.light-mode .client-logos,
+      body.light-mode .faq-container,
+      body.light-mode .faq-item,
+      body.light-code .footer,
+      body.light-mode .copyright {
+        @apply border-borda-clara;
+      }
+      body.light-mode .logo-scroller img {
+        filter: grayscale(1) opacity(0.6);
+      }
+      body.light-mode .logo-scroller img:hover {
+        filter: grayscale(0) opacity(1);
+      }
+      body.light-mode .service-card,
+      body.light-mode .curso-card,
+      body.light-mode .faq-item,
+      body.light-mode .footer {
+        @apply bg-card-claro border-borda-clara;
+      }
+      body.light-mode .card-icon, 
+      body.light-mode .faq-question i {
+        @apply text-roxo-principal;
+      }
+      body.light-mode .swiper-button-next,
+      body.light-mode .swiper-button-prev {
+        @apply bg-white text-roxo-principal shadow-lg;
+      }
+      body.light-mode .form-input {
+        @apply border-borda-clara text-texto-escuro;
+      }
+      body.light-mode .form-label {
+        @apply text-texto-cinza-claro;
+      }
+      body.light-mode .form-input:focus {
+        @apply border-roxo-principal;
+      }
+      body.light-mode .form-input:focus + .form-label,
+      body.light-mode .form-input:not(:placeholder-shown) + .form-label {
+        @apply text-roxo-principal;
+      }
+      body.light-mode .footer-slogan,
+      body.light-mode .footer-links a,
+      body.light-mode .footer-links li,
+      body.light-mode .social-links a,
+      body.light-mode .copyright p {
+        @apply text-texto-cinza-claro;
+      }
+      body.light-mode .footer-column h3 {
+        @apply text-texto-escuro;
+      }
+      body.light-mode .footer-links a:hover,
+      body.light-mode .social-links a:hover {
+        @apply text-roxo-principal;
+      }
+      body.light-mode .glow-effect {
+        background-color: rgba(139, 92, 246, 0.1);
+      }
+      
+      /* --- FIM TEMA CLARO --- */
+
+      /* Efeito "Glow" do Hero */
+      .glow-effect {
+        position: absolute;
+        top: 0%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 600px;
+        height: 500px;
+        background-color: rgba(139, 92, 246, 0.15); /* Roxo */
+        filter: blur(120px);
+        border-radius: 50%;
+        z-index: 0;
+        pointer-events: none;
+      }
+        
+        
+      /* Animação do Carrossel de Logos */
+      .logo-scroller {
+        @apply max-w-full overflow-hidden;
+        mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+        -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+      }
+      .logo-scroller-inner {
+        @apply flex w-max flex-nowrap gap-12;
+        animation: scroll 30s linear infinite;
+      }
+      .logo-scroller[data-animated="true"] .logo-scroller-inner {
+        @apply w-max flex-nowrap;
+      }
+      .logo-scroller img {
+        @apply h-10 w-auto filter grayscale opacity-60 transition-all duration-300 hover:grayscale-0 hover:opacity-100;
+      }
+      
+      @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+
+      /* Formulário com Floating Label */
+      .form-group {
+        @apply relative;
+      }
+      .form-input {
+        @apply block w-full bg-transparent px-0 py-2.5 text-base border-0 border-b-2 border-borda-divisao appearance-none focus:outline-none focus:ring-0 z-10;
+      }
+      .form-label {
+        @apply absolute text-base text-texto-cinza duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0];
+      }
+      /* A mágica do floating label com Tailwind 'peer' */
+      .form-input:focus + .form-label,
+      .form-input:not(:placeholder-shown) + .form-label {
+        @apply text-roxo-principal;
+        transform: translateY(-1.5rem) scale(0.75); /* Ajuste para subir */
+      }
+      .form-input:focus {
+        @apply border-roxo-principal;
+      }
+       /* ===== FAQ SECTION ===== */
+.faq-section {
+    padding: 80px 20px;
+    background: var(--bg-color);
+    color: var(--text-color);
+    text-align: center;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.faq-section h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.faq-item {
+    background: var(--card-bg);
+    border-radius: 10px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .faq-item {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.faq-item:hover {
+    border-color: var(--primary-color);
+}
+
+.faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.faq-question i {
+    transition: transform 0.3s ease;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    background: var(--bg-color);
+    padding: 0 20px;
+    transition: all 0.4s ease;
+    color: var(--text-color);
+}
+
+body.dark-mode .faq-answer {
+    background: #1d222b; /* leve destaque no escuro */
+    color: #ccc;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 300px;
+    padding: 15px 20px 25px;
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+    }
+    </style>
+</head>
+
+<body 
+  x-data="{ 
+    mobileMenuOpen: false, 
+    lightMode: false,
+    initTheme() {
+      if (localStorage.getItem('theme') === 'light') {
+        this.lightMode = true;
+      } else {
+        this.lightMode = false;
+      }
+    }
+  }" 
+  x-init="initTheme()" 
+  :class="{'light-mode': lightMode}"
+  class="select-none" >
+
+    <div class="top-bar bg-card-escuro py-2 px-4 text-center text-sm font-medium">
+      <p>
+        ✨ 20% de desconto no seu 1º Projeto.
+        <a href="#precos" class="font-bold text-roxo-principal underline ml-1"
+          >Saiba mais</a
+        >
+      </p>
+    </div>
+
+    <nav class="navbar container mx-auto px-6 py-5 flex justify-between items-center h-20 border-b border-borda-divisao bg-fundo-escuro sticky top-0 z-50">
+      <a href="#" class="flex items-center gap-3">
+        <div class="logo w-10 h-10 bg-roxo-principal text-white flex items-center justify-center font-bold text-xl rounded-lg">
+          WF
+        </div>
+        <div class="logo-text text-xl font-bold text-texto-claro">
+          IA Web Factory
+        </div>
+      </a>
+
+      <div class="hidden md:flex items-center gap-6">
+        <a href="#servicos" class="text-texto-cinza font-semibold hover:text-roxo-principal transition-colors">Serviços</a>
+        <a href="#cursos" class="text-texto-cinza font-semibold hover:text-roxo-principal transition-colors">Cursos</a>
+        <a href="#faq" class="text-texto-cinza font-semibold hover:text-roxo-principal transition-colors">FAQ</a>
+        <a href="#contato" class="text-texto-cinza font-semibold hover:text-roxo-principal transition-colors">Contato</a>
+        <a href="loguin.html" class="ml-4 bg-roxo-principal text-white font-semibold py-2 px-5 rounded-lg hover:opacity-80 transition-opacity">
+          Login
+        </a>
+      </div>
+
+      <button 
+        @click="mobileMenuOpen = true" 
+        class="md:hidden nav-toggle text-texto-claro text-3xl" 
+        aria-label="Abrir menu"
+      >
+        <i class="bx bx-menu"></i>
+      </button>
+
+      <div 
+        x-show="mobileMenuOpen" 
+        x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="transform translate-x-full"
+        x-transition:enter-end="transform translate-x-0"
+        x-transition:leave="transition ease-in duration-300"
+        x-transition:leave-start="transform translate-x-0"
+        x-transition:leave-end="transform translate-x-full"
+        @click.away="mobileMenuOpen = false"
+        class="nav-mobile fixed top-0 right-0 w-4/5 max-w-sm h-full bg-fundo-escuro border-l border-borda-divisao z-50 p-6 flex flex-col shadow-2xl"
+        style="display: none;"
+      >
+        <button 
+          @click="mobileMenuOpen = false" 
+          class="nav-close text-texto-claro text-4xl self-end" 
+          aria-label="Fechar menu"
+        >
+          <i class="bx bx-x"></i>
+        </button>
+
+        <div class="flex flex-col gap-6 mt-8">
+          <a href="#servicos" @click="mobileMenuOpen = false" class="nav-mobile-link text-texto-claro text-xl font-semibold">Serviços</a>
+          <a href="#cursos" @click="mobileMenuOpen = false" class="nav-mobile-link text-texto-claro text-xl font-semibold">Cursos</a>
+          <a href="#faq" @click="mobileMenuOpen = false" class="nav-mobile-link text-texto-claro text-xl font-semibold">FAQ</a>
+          <a href="#contato" @click="mobileMenuOpen = false" class="nav-mobile-link text-texto-claro text-xl font-semibold">Contato</a>
+          <a href="loguin.html" class="mt-4 w-full text-center bg-roxo-principal text-white font-semibold py-3 px-5 rounded-lg">
+            Login
+          </a>
+        </div>
+        
+        <div class="theme-switcher mt-auto pt-6 border-t border-borda-divisao flex items-center justify-between">
+          <span class="theme-label text-texto-cinza text-sm font-medium" x-text="lightMode ? 'Modo Claro' : 'Modo Escuro'"></span>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" class="sr-only peer" x-model="lightMode" @change="localStorage.setItem('theme', lightMode ? 'light' : 'dark')">
+            <div class="w-11 h-6 bg-borda-divisao rounded-full peer-checked:bg-roxo-principal transition-colors peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+          </label>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <section id="hero" class="hero container mx-auto px-6 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center relative overflow-hidden">
+        <div class="glow-effect"></div>
+        <div class="hero-text text-center md:text-left z-10">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter mb-6">
+            Sua Fábrica de Sites com
+            <span class="gradient-text bg-gradient-to-r from-roxo-principal to-cta-magenta">
+              Inteligência Artificial
+            </span>
+          </h1>
+          <p class="text-lg md:text-xl text-texto-cinza max-w-lg mx-auto md:mx-0 mb-8">
+            Transformamos sua ideia em um site profissional, responsivo e
+            otimizado para vendas. Rápido, inteligente e com a sua cara.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+            <a href="#precos" class="btn btn-primary bg-cta-magenta text-white font-semibold py-3 px-6 rounded-lg hover:bg-transparent hover:text-cta-magenta hover:border-cta-magenta border-2 border-transparent transition-all transform hover:scale-105">
+              Ver Planos
+            </a>
+            <a href="#servicos" class="btn btn-secondary-outline bg-transparent border-2 border-borda-divisao text-texto-claro font-semibold py-3 px-6 rounded-lg hover:bg-borda-divisao transition-colors">
+              Nossos Serviços
+            </a>
+          </div>
+        </div>
+        <div class="hero-image z-10">
+          <img
+            src="https://i.ibb.co/Xz9QJgK/hero-image.png"
+            alt="Dashboard de criação de sites com IA"
+            class="rounded-lg shadow-2xl"
+          />
+        </div>
+      </section>
+
+      <section id="clientes" class="client-logos py-16 border-t border-borda-divisao">
+        <div class="container mx-auto px-6">
+          <h3 class="section-subtitle text-center text-texto-cinza font-semibold uppercase tracking-wider mb-8">
+            Empresas que confiam na nossa IA
+          </h3>
+          <div 
+            class="logo-scroller" 
+            data-speed="fast" 
+            x-data 
+            x-init="
+              const scroller = $el;
+              if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                scroller.setAttribute('data-animated', true);
+                const scrollerInner = scroller.querySelector('.logo-scroller-inner');
+                const scrollerContent = Array.from(scrollerInner.children);
+                scrollerContent.forEach(item => {
+                  const duplicatedItem = item.cloneNode(true);
+                  duplicatedItem.setAttribute('aria-hidden', true);
+                  scrollerInner.appendChild(duplicatedItem);
+                });
+              }
+            "
+          >
+            <div class="logo-scroller-inner">
+              <img src="https://i.ibb.co/jDNd70X/logo-1.png" alt="Cliente 1" />
+              <img src="https://i.ibb.co/hK4XyQ0/logo-2.png" alt="Cliente 2" />
+              <img src="https://i.ibb.co/gWFQjC3/logo-3.png" alt="Cliente 3" />
+              <img src="https://i.ibb.co/BfL3M3J/logo-4.png" alt="Cliente 4" />
+              <img src="https://i.ibb.co/bWcqs6z/logo-5.png" alt="Cliente 5" />
+              <img src="https://i.ibb.co/jDNd70X/logo-1.png" alt="Cliente 1" />
+              <img src="https://i.ibb.co/hK4XyQ0/logo-2.png" alt="Cliente 2" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="servicos" class="section container mx-auto px-6">
+        <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-4">O que nós fazemos?</h2>
+        <p class="section-description text-lg text-texto-cinza text-center max-w-2xl mx-auto mb-12">
+          Soluções completas para sua presença digital.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="service-card bg-card-escuro p-6 rounded-xl border border-borda-divisao transition-all duration-300 hover:border-roxo-principal hover:-translate-y-1 hover:shadow-2xl hover:shadow-roxo-principal/10">
+            <i class="bx bx-rocket card-icon text-4xl text-roxo-principal mb-4"></i>
+            <h3 class="text-xl font-bold mb-3">Sites Profissionais com IA</h3>
+            <p class="text-texto-cinza text-sm leading-relaxed">
+              Sites completos com design personalizado, SEO otimizado e textos
+              gerados por IA + Domínio grátis.
+            </p>
+          </div>
+          <div class="service-card bg-card-escuro p-6 rounded-xl border border-borda-divisao transition-all duration-300 hover:border-roxo-principal hover:-translate-y-1 hover:shadow-2xl hover:shadow-roxo-principal/10">
+            <i class="bx bx-target-lock card-icon text-4xl text-roxo-principal mb-4"></i>
+            <h3 class="text-xl font-bold mb-3">Landing Pages de Conversão</h3>
+            <p class="text-texto-cinza text-sm leading-relaxed">
+              Páginas únicas para campanhas, lançamento de produtos e captação
+              de clientes. Focadas 100% em resultado.
+            </p>
+          </div>
+          <div class="service-card bg-card-escuro p-6 rounded-xl border border-borda-divisao transition-all duration-300 hover:border-roxo-principal hover:-translate-y-1 hover:shadow-2xl hover:shadow-roxo-principal/10">
+            <i class="bx bx-store card-icon text-4xl text-roxo-principal mb-4"></i>
+            <h3>Lojas Virtuais (E-commerce)</h3>
+            <p class="text-texto-cinza text-sm leading-relaxed">
+              Sua loja online completa, com cadastro de produtos, integração de
+              pagamento (Pix, Cartão) e pronta para vender.
+            </p>
+          </div>
+          <div class="service-card bg-card-escuro p-6 rounded-xl border border-borda-divisao transition-all duration-300 hover:border-roxo-principal hover:-translate-y-1 hover:shadow-2xl hover:shadow-roxo-principal/10">
+            <i class="bx bx-paint card-icon text-4xl text-roxo-principal mb-4"></i>
+            <h3 class="text-xl font-bold mb-3">Recriação e Otimização</h3>
+            <p class="text-texto-cinza text-sm leading-relaxed">
+              Recriamos sites antigos com tecnologia moderna e performance
+              otimizada para 2025.
+            </p>
+          </div>
+        </div>
+      </section>
+
+
+
+      
+      <!--Seçao faq / perguntas frequentes-->          
+             <section class="faq-section fade-in" id="faq">
+    <h2>Perguntas Frequentes (FAQ)</h2>
+
+    <div class="faq-container">
+
+        <div class="faq-item">
+            <button class="faq-question">
+                <span>💡 Como funciona a criação de um site pela AI Web Factory?</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+                <p>Você escolhe o tipo de site, envia suas preferências e nossa IA cria o design personalizado automaticamente. Depois, fazemos os ajustes finais juntos!</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                <span>⏱️ Quanto tempo leva para o site ficar pronto?</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+                <p>Em média, entre 24 e 48 horas após o envio das informações necessárias, dependendo da complexidade do projeto.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                <span>💰 Posso pagar parcelado?</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+                <p>Sim! Aceitamos pagamentos via Pix, cartão de crédito, boleto e outras formas. Parcelamentos podem ser combinados diretamente pelo WhatsApp.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                <span>🔒 Vocês oferecem suporte após a entrega?</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+                <p>Sim, oferecemos suporte técnico gratuito durante o contrato após a entrega e planos adicionais de manutenção mensal, caso deseje.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                <span>🧠 É possível integrar IA no meu site?</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+                <p>Claro! Podemos adicionar chatbots inteligentes, assistentes automáticos e até sistemas com ideias integradas, sob demanda.</p>
+            </div>
+        </div>
+
+    </div>
+             </section>
+        <!--fim faq-->
+
+      <section id="contato" class="section container mx-auto px-6">
+        <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-4">
+          Vamos começar seu projeto?
+        </h2>
+        <p class="section-description text-lg text-texto-cinza text-center max-w-2xl mx-auto mb-12">
+          Preencha o formulário e nossa equipe entrará em contato em 24 horas.
+        </p>
+
+        <form
+          action="https://formsubmit.co/iawebfactory.site@gmail.com"
+          method="POST"
+          class="contact-form max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8"
+        >
+          <div class="form-group md:col-span-1">
+            <input type="text" name="name" id="name" class="form-input peer" placeholder=" " required/>
+            <label for="name" class="form-label">Nome completo</label>
+          </div>
+          <div class="form-group md:col-span-1">
+            <input type="email" name="email" id="email" class="form-input peer" placeholder=" " required/>
+            <label for="email" class="form-label">Seu melhor e-mail</label>
+          </div>
+          <div class="form-group md:col-span-2">
+            <input type="tel" name="phone" id="phone" class="form-input peer" placeholder=" " required/>
+            <label for="phone" class="form-label">WhatsApp (com DDD)</label>
+          </div>
+          <div class="form-group md:col-span-2">
+            <textarea name="message" id="message" class="form-input peer" placeholder=" " rows="4" required></textarea>
+            <label for="message" class="form-label">Fale um pouco sobre sua ideia...</label>
+          </div>
+
+          <input type="hidden" name="_next" value="https://SEU_SITE.com/obrigado.html" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_autoresponse" value="Recebemos sua mensagem! Em breve, um especialista da IA Web Factory entrará em contato." />
+
+          <div class="md:col-span-2">
+            <button type="submit" class="btn btn-primary w-full bg-cta-magenta text-white font-semibold py-3 px-6 rounded-lg hover:bg-transparent hover:text-cta-magenta hover:border-cta-magenta border-2 border-transparent transition-all transform hover:scale-105">
+              Enviar Mensagem
+            </button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer bg-card-escuro border-t border-borda-divisao mt-16">
+      <div class="container mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-12">
+        <div class="footer-column md:col-span-2 lg:col-span-1">
+          <a href="#" class="flex items-center gap-3 mb-4">
+            <div class="logo w-10 h-10 bg-roxo-principal text-white flex items-center justify-center font-bold text-xl rounded-lg">
+              WF
+            </div>
+            <div class="logo-text text-xl font-bold text-texto-claro">
+              IA Web Factory
+            </div>
+          </a>
+          <p class="footer-slogan text-sm text-texto-cinza mb-6">
+            Sites Inteligentes, Resultados Reais.
+          </p>
+          <div class="social-links flex gap-4">
+            <a href="#" aria-label="Instagram" class="text-texto-cinza text-2xl hover:text-roxo-principal transition-colors"><i class="bx bxl-instagram"></i></a>
+            <a href="#" aria-label="Facebook" class="text-texto-cinza text-2xl hover:text-roxo-principal transition-colors"><i class="bx bxl-facebook-square"></i></a>
+            <a href="#" aria-label="LinkedIn" class="text-texto-cinza text-2xl hover:text-roxo-principal transition-colors"><i class="bx bxl-linkedin-square"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3 class="text-sm font-semibold text-texto-claro uppercase tracking-wider mb-4">Navegação</h3>
+          <ul class="footer-links flex flex-col gap-3">
+            <li><a href="#servicos" class="text-texto-cinza hover:text-roxo-principal transition-colors">Serviços</a></li>
+            <li><a href="#cursos" class="text-texto-cinza hover:text-roxo-principal transition-colors">Cursos</a></li>
+            <li><a href="#faq" class="text-texto-cinza hover:text-roxo-principal transition-colors">FAQ</a></li>
+            <li><a href="#contato" class="text-texto-cinza hover:text-roxo-principal transition-colors">Contato</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3 class="text-sm font-semibold text-texto-claro uppercase tracking-wider mb-4">Legal</h3>
+          <ul class="footer-links flex flex-col gap-3">
+            <li><a href="#" class="text-texto-cinza hover:text-roxo-principal transition-colors">Termos de Serviço</a></li>
+            <li><a href="#" class="text-texto-cinza hover:text-roxo-principal transition-colors">Política de Privacidade</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3 class="text-sm font-semibold text-texto-claro uppercase tracking-wider mb-4">Contato</h3>
+          <ul class="footer-links flex flex-col gap-3">
+            <li class="text-texto-cinza">iawebfactory.site@gmail.com</li>
+            <li class="text-texto-cinza">+55 (99) 91234-5678</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="copyright border-t border-borda-divisao py-6 text-center">
+        <p class="text-texto-cinza text-sm">
+          © <span id="currentYear"></span> IA WEB FACTORY. Todos os direitos
+          reservados.
+        </p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        
+        // --- 1. SCRIPT DO CARROSSEL DE CURSOS (SWIPER.JS) ---
+        const swiper = new Swiper(".cursos-carousel", {
+          slidesPerView: 1,
+          spaceBetween: 24, // Espaço entre os slides
+          loop: true,
+          // Navegação (Setas)
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+          // Responsivo
+          breakpoints: {
+            640: {
+              slidesPerView: 2,
+            },
+            1024: {
+              slidesPerView: 3,
+            },
+          },
+        });
+
+        // --- 2. SCRIPT DO ANO ATUAL (FOOTER) ---
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
+      });
+    </script>
+  </body>
+</html>

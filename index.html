@@ -669,6 +669,16 @@ body.dark-mode .faq-answer {
         // --- 2. SCRIPT DO ANO ATUAL (FOOTER) ---
         document.getElementById("currentYear").textContent = new Date().getFullYear();
       });
+   
+    
+    // ===== FAQ interativo =====
+document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+        const item = button.parentElement;
+        item.classList.toggle('active');
+    });
+});
+    
     </script>
   </body>
 </html>

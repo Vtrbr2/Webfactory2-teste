@@ -423,23 +423,39 @@ body.dark-mode .faq-answer {
 }
      
   /*entrada*/ 
-      .word {
+      /* Frase da esquerda */
+.word-left {
   opacity: 0;
   display: inline-block;
-  transform: translateX(50px); /* começa deslocada para a direita */
+  transform: translateX(-50px); /* começa à esquerda */
+  animation: fadeInLeft 0.6s forwards;
+  animation-delay: 0.1s; /* delay inicial */
+}
+
+@keyframes fadeInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Palavras da direita */
+.word-right {
+  opacity: 0;
+  display: inline-block;
+  transform: translateX(50px); /* começa à direita */
   animation: fadeInRight 0.6s forwards;
 }
 
-.word:nth-child(1) { animation-delay: 0.2s; }
-.word:nth-child(2) { animation-delay: 0.5s; }
-/* continue incrementando o delay para as próximas palavras */
+.word-right:nth-child(1) { animation-delay: 0.7s; }
+.word-right:nth-child(2) { animation-delay: 0.9s; }
 
 @keyframes fadeInRight {
   to {
     opacity: 1;
-    transform: translateX(0); /* termina na posição original */
+    transform: translateX(0);
   }
-}  
+}
     </style>
 </head>
 
@@ -542,10 +558,12 @@ body.dark-mode .faq-answer {
         <div class="glow-effect"></div>
         <div class="hero-text text-center md:text-left z-10">
           <h1 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter mb-6 hero-title">
-  Sua Fábrica de Sites com
+  <span class="word-left">
+    Sua Fábrica de Sites com
+  </span>
   <span class="gradient-text bg-gradient-to-r from-roxo-principal to-cta-magenta">
-    <span class="word">Inteligência</span>
-    <span class="word">Artificial</span>
+    <span class="word-right">Inteligência</span>
+    <span class="word-right">Artificial</span>
   </span>
           </h1>
           <p class="text-lg md:text-xl text-texto-cinza max-w-lg mx-auto md:mx-0 mb-8">

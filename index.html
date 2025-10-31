@@ -272,43 +272,29 @@ body.dark-mode .faq-answer {
 .faq-item.active .faq-question i {
     transform: rotate(180deg);
     }
-   
-    :root {
+   :root {
   --roxo: #6a11cb;
   --rosa: #ff4dda;
   --azul: #1b1b5d;
+  --fundo: #0b0b23;
+  --texto: #ffffff;
 }
 
-.countdown-banner {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  z-index: 9999;
+.countdown-section {
   background: linear-gradient(90deg, var(--roxo), var(--rosa));
-  color: #fff;
+  color: var(--texto);
   text-align: center;
   font-family: 'Poppins', sans-serif;
-  padding: 10px 0;
-  font-size: 1rem;
-  font-weight: 600;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  box-shadow: 0 0 15px rgba(255, 77, 218, 0.4);
-  transition: all 0.3s ease;
+  padding: 40px 20px;
+  border-radius: 16px;
+  margin: 60px auto;
+  max-width: 700px;
+  box-shadow: 0 0 30px rgba(255, 77, 218, 0.4);
+  position: relative;
+  overflow: hidden;
 }
 
-.countdown-timer {
-  background: var(--azul);
-  border-radius: 8px;
-  padding: 6px 10px;
-  font-weight: bold;
-  letter-spacing: 1px;
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2);
-}
-
-.countdown-banner::before {
+.countdown-section::before {
   content: "";
   position: absolute;
   top: 0;
@@ -317,7 +303,7 @@ body.dark-mode .faq-answer {
   height: 100%;
   background: rgba(255,255,255,0.2);
   transform: skewX(-20deg);
-  animation: shine 4s infinite;
+  animation: shine 5s infinite;
 }
 
 @keyframes shine {
@@ -325,6 +311,44 @@ body.dark-mode .faq-answer {
   50% { left: 100%; }
   100% { left: 100%; }
 }
+
+.countdown-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  z-index: 2;
+  position: relative;
+}
+
+.countdown-timer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  z-index: 2;
+  position: relative;
+}
+
+.time-box {
+  background: var(--azul);
+  border-radius: 12px;
+  padding: 15px 20px;
+  width: 80px;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.time-box span:first-child {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.label {
+  font-size: 0.8rem;
+  color: #ccc;
+  margin-top: 5px;
+}
+    
     </style>
 </head>
 
@@ -421,16 +445,7 @@ body.dark-mode .faq-answer {
       </div>
     </nav>
 
- <div class="countdown-banner">
-  <span class="countdown-title">🚀 Black Friday IA Web Factory:</span>
-  <div class="countdown-timer">
-    <span id="days">00</span>D
-    <span id="hours">00</span>H
-    <span id="minutes">00</span>M
-    <span id="seconds">00</span>S
-  </div>
-    </div>
-    
+
     <main>
       <section id="hero" class="hero container mx-auto px-6 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center relative overflow-hidden">
         <div class="glow-effect"></div>
@@ -463,7 +478,29 @@ body.dark-mode .faq-answer {
         </div>
       </section>
 
-      <section id="clientes" class="client-logos py-16 border-t border-borda-divisao">
+        <section class="countdown-section">
+  <h2 class="countdown-title">🚀 Black Friday IA Web Factory</h2>
+  <div class="countdown-timer">
+    <div class="time-box">
+      <span id="days">00</span>
+      <span class="label">Dias</span>
+    </div>
+    <div class="time-box">
+      <span id="hours">00</span>
+      <span class="label">Horas</span>
+    </div>
+    <div class="time-box">
+      <span id="minutes">00</span>
+      <span class="label">Min</span>
+    </div>
+    <div class="time-box">
+      <span id="seconds">00</span>
+      <span class="label">Seg</span>
+    </div>
+  </div>
+      </section>
+    
+        <section id="clientes" class="client-logos py-16 border-t border-borda-divisao">
         <div class="container mx-auto px-6">
           <h3 class="section-subtitle text-center text-texto-cinza font-semibold uppercase tracking-wider mb-8">
             Empresas que confiam na nossa IA
@@ -741,7 +778,7 @@ document.querySelectorAll('.faq-question').forEach(button => {
         item.classList.toggle('active');
     });
 });
-    // 👉 Defina aqui o horário final
+  // 👉 Data final (ajuste para o dia e hora desejados)
 const endDate = new Date("Nov 31, 2025 23:59:59").getTime();
 
 const timer = setInterval(() => {
@@ -760,9 +797,11 @@ const timer = setInterval(() => {
 
   if (distance < 0) {
     clearInterval(timer);
-    document.querySelector(".countdown-banner").innerHTML = "🔥 Promoção encerrada!";
+    document.querySelector(".countdown-section").innerHTML = `
+      <h2 class="countdown-title">🔥 Promoção encerrada!</h2>
+    `;
   }
-}, 1000);
+}, 1000);  
         
     </script>
   </body>

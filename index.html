@@ -48,7 +48,16 @@
         /* Transição suave de cores ao trocar de tema */
         @apply bg-fundo-escuro text-texto-claro transition-colors duration-300;
       }
+      /* Estado inicial — tudo invisível */
+body {
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
 
+/* Quando o site estiver carregado */
+body.loaded {
+  opacity: 1;
+} 
       /* TEMA CLARO */
       body.light-mode {
         @apply bg-fundo-claro text-texto-escuro;
@@ -423,60 +432,7 @@ body.dark-mode .faq-answer {
 }
      
   /*entrada*/ 
-      /* garante que o título e o span gradient mantenham fluxo inline e não quebrem */
-.hero-title,
-.hero-title .gradient-text {
-  display: inline; /* mantém comportamento inline original */
-}
-
-/* cada palavra será inline-block para poder animar sem quebrar o fluxo */
-.hero-title .word-left,
-.hero-title .word-front,
-.hero-title .word-right {
-  display: inline-block;
-  white-space: pre; /* preserva o espaço em branco logo após a palavra */
-  opacity: 0;
-  transform: translateX(0); /* estado final padrão */
-  will-change: transform, opacity;
-}
-
-/* frase inteira (as palavras left já terão delays individuais via inline style) */
-.hero-title .word-left {
-  transform: translateX(-40px);
-  animation: inFromLeft 0.55s forwards cubic-bezier(.22,.9,.32,1);
-}
-
-/* "Inteligência" (front) - aparece sem deslocamento horizontal, só fade/scale */
-.hero-title .word-front {
-  transform: translateY(6px) scale(0.98);
-  animation: inFromFront 0.55s forwards cubic-bezier(.22,.9,.32,1);
-}
-
-/* "Artificial" (direita) - cada palavra vem da direita */
-.hero-title .word-right {
-  transform: translateX(40px);
-  animation: inFromRight 0.55s forwards cubic-bezier(.22,.9,.32,1);
-}
-
-/* keyframes */
-@keyframes inFromLeft {
-  to { opacity: 1; transform: translateX(0); }
-}
-@keyframes inFromFront {
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-@keyframes inFromRight {
-  to { opacity: 1; transform: translateX(0); }
-}
-
-/* ajustes responsivos: se precisar reduzir deslocamento em telas pequenas */
-@media (max-width: 640px) {
-  .hero-title .word-left { transform: translateX(-20px); }
-  .hero-title .word-right { transform: translateX(20px); }
-}
-
-/* opcional: evita flashing caso o CSS carregue após o JS */
-.hero-title { visibility: visible; }
+      
     </style>
 </head>
 
@@ -933,102 +889,9 @@ const timer = setInterval(() => {
     `;
   }
 }, 1000);  
-        // Executar quando DOM carregar
-document.addEventListener('DOMContentLoaded', () => {
-  const heroTitle = document.querySelector('.hero-title');
-  if (!heroTitle) return;
-
-  // Localiza o span gradient-text dentro do h1
-  const gradientSpan = heroTitle.querySelector('.gradient-text');
-
-  // Função que transforma um nó de texto em spans por palavra (mantendo espaços)
-  function wrapWordsPreserve(node, classPrefix, delayStart = 0, delayStep = 0.12) {
-    // pega o texto bruto e preserva múltiplos espaços
-    const raw = node.textContent;
-    const words = raw.split(/(\s+)/); // mantém espaços como tokens
-    const frag = document.createDocumentFragment();
-
-    let wordIndex = 0;
-    words.forEach(token => {
-      if (/\s+/.test(token)) {
-        // é espaço: adiciona como nó de texto para garantir espaçamento idêntico
-        frag.appendChild(document.createTextNode(token));
-      } else {
-        const span = document.createElement('span');
-        span.className = `${classPrefix}`;
-        span.textContent = token;
-        // define delay incremental (somente para palavras, não para espaços)
-        span.style.animationDelay = `${(delayStart + wordIndex * delayStep).toFixed(3)}s`;
-        frag.appendChild(span);
-        wordIndex++;
-      }
-    });
-
-    // substitui o nó original pelo fragmento com spans
-    node.textContent = '';
-    node.appendChild(frag);
-  }
-
-  // Identifica o primeiro text node (antes do gradient span)
-  // Pode haver nós de texto e nós de elemento; vamos agrupar todos os textNodes que não fazem parte do gradientSpan
-  const nodesBefore = [];
-  for (const child of Array.from(heroTitle.childNodes)) {
-    if (child === gradientSpan) break;
-    if (child.nodeType === Node.TEXT_NODE && child.textContent.trim().length > 0) {
-      nodesBefore.push(child);
-    } else if (child.nodeType === Node.TEXT_NODE) {
-      // espaços/tabs/newlines entre nodes: keep them (no need to wrap)
-    } else if (child.nodeType === Node.ELEMENT_NODE) {
-      // se tiver elementos (p.ex. <strong>), você pode adaptar. Aqui, vamos ignorar.
-    }
-  }
-
-  // Separar todos os text nodes antes em um único text node para wrapping limpo
-  if (nodesBefore.length) {
-    const combined = nodesBefore.map(n => n.textContent).join('');
-    const firstNode = nodesBefore[0];
-    // limpar os nodesBefore
-    nodesBefore.forEach(n => n.remove());
-    const newTextNode = document.createTextNode(combined);
-    heroTitle.insertBefore(newTextNode, gradientSpan || null);
-    wrapWordsPreserve(newTextNode, 'word-left', 0.05, 0.14);
-  }
-
-  if (gradientSpan) {
-    // separa "Inteligência Artificial" em duas palavras-chave:
-    // tratamos todas as palavras do gradientSpan como sequência, mas aplicamos classes diferentes
-    // vamos pegar o texto, dividir por espaço e classificar:
-    const gradText = gradientSpan.textContent.trim();
-    const parts = gradText.split(/\s+/);
-
-    // se houver ao menos duas palavras, tratamos a primeira como 'front' e as restantes como 'right'
-    gradientSpan.textContent = ''; // limpar
-    if (parts.length === 1) {
-      // só uma palavra: anima como front
-      const s = document.createElement('span');
-      s.className = 'word-front';
-      s.textContent = parts[0];
-      s.style.animationDelay = '0.35s';
-      gradientSpan.appendChild(s);
-    } else {
-      // primeira palavra -> front
-      const first = document.createElement('span');
-      first.className = 'word-front';
-      first.textContent = parts[0] + ' ';
-      first.style.animationDelay = '0.35s';
-      gradientSpan.appendChild(first);
-
-      // palavras restantes -> right (cada uma com delay incremental)
-      parts.slice(1).forEach((w, i) => {
-        const s = document.createElement('span');
-        s.className = 'word-right';
-        s.textContent = (i === parts.length - 2) ? w : w + ' '; // mantém espaços
-        // delay começa a partir de 0.6s
-        s.style.animationDelay = `${(0.6 + i * 0.14).toFixed(3)}s`;
-        gradientSpan.appendChild(s);
-      });
-    }
-  }
+        // Fade-in global do site
+window.addEventListener('load', () => {
+  document.body.classList.add('loaded');
 });
     </script>
   </body>

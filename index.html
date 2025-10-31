@@ -432,7 +432,144 @@ body.dark-mode .faq-answer {
 }
      
   /*entrada*/ 
-      
+   /* Ícone flutuante */
+.chat-toggle {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #4e46e5, #6159f6);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+  z-index: 1000;
+}
+.chat-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(97, 89, 246, 0.8);
+}
+.chat-toggle img {
+  width: 32px;
+  height: 32px;
+  filter: brightness(0) invert(1);
+}
+
+/* Fundo escurecido (modal) */
+.chat-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.chat-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Janela do chat */
+.chat-window {
+  background: #1e1e1e;
+  border-radius: 15px;
+  width: 360px;
+  max-width: 90%;
+  height: 460px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: translateY(40px);
+  transition: 0.3s ease;
+}
+.chat-modal.active .chat-window {
+  transform: translateY(0);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+}
+
+.chat-header {
+  background: #4e46e5;
+  color: #fff;
+  font-weight: bold;
+  padding: 12px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.chat-header button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.messages {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #151515;
+}
+.message {
+  padding: 10px 14px;
+  border-radius: 12px;
+  max-width: 80%;
+  animation: fadeIn 0.3s ease;
+}
+.user {
+  align-self: flex-end;
+  background: #4e46e5;
+}
+.bot {
+  align-self: flex-start;
+  background: #333;
+}
+
+.input-area {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #333;
+  background: #1c1c1c;
+}
+#user-input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  background: #2a2a2a;
+  color: #fff;
+}
+#send-btn {
+  margin-left: 8px;
+  background: #4e46e5;
+  border: none;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+#send-btn:hover {
+  background: #6159f6;
+}
+
+.hidden {
+  display: none;
+}   
     </style>
 </head>
 
@@ -770,7 +907,30 @@ body.dark-mode .faq-answer {
         </form>
       </section>
     </main>
+<!-- Botão flutuante -->
+<div id="chat-toggle" class="chat-toggle">
+  <img src="https://cdn-icons-png.flaticon.com/512/4712/4712035.png" alt="IA" />
+</div>
 
+<!-- Modal do Chat -->
+<div id="chat-modal" class="chat-modal hidden">
+  <div class="chat-window">
+    <div class="chat-header">
+      <span>🤖 Assistente IA</span>
+      <button id="close-chat">×</button>
+    </div>
+
+    <div id="messages" class="messages"></div>
+
+    <div class="input-area">
+      <input id="user-input" type="text" placeholder="Digite sua mensagem..." />
+      <button id="send-btn">Enviar</button>
+    </div>
+  </div>
+</div>
+
+<script src="chatbot.js"></script>
+    
     <footer class="footer bg-card-escuro border-t border-borda-divisao mt-16">
       <div class="container mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-12">
         <div class="footer-column md:col-span-2 lg:col-span-1">

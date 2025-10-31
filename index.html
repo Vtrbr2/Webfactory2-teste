@@ -379,7 +379,7 @@ body.dark-mode .faq-answer {
  background: white;
  border-radius: 10px;
  transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
- margin: 10px;
+ 
         }
 
 .shadow {
@@ -393,6 +393,11 @@ body.dark-mode .faq-answer {
   padding: 10px;           /* dá um espaçamento interno */
   font-size: 16px;         /* tamanho da fonte */
   color: #333;             /* cor do texto */
+}
+        .container {
+  display: flex;       /* ou grid */
+  flex-wrap: wrap;     /* permite quebrar linha se não couber */
+  gap: 20px;           /* espaço entre os cards */
 }
     </style>
 </head>

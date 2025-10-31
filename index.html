@@ -423,13 +423,10 @@ body.dark-mode .faq-answer {
 }
      
   /*entrada*/ 
-      /* Frase da esquerda */
-.word-left {
-  opacity: 0;
+      .word-left, .word-right {
   display: inline-block;
-  transform: translateX(-50px); /* começa à esquerda */
-  animation: fadeInLeft 0.6s forwards;
-  animation-delay: 0.1s; /* delay inicial */
+  opacity: 0;
+  white-space: pre; /* mantém espaços */
 }
 
 @keyframes fadeInLeft {
@@ -439,22 +436,21 @@ body.dark-mode .faq-answer {
   }
 }
 
-/* Palavras da direita */
-.word-right {
-  opacity: 0;
-  display: inline-block;
-  transform: translateX(50px); /* começa à direita */
-  animation: fadeInRight 0.6s forwards;
-}
-
-.word-right:nth-child(1) { animation-delay: 0.7s; }
-.word-right:nth-child(2) { animation-delay: 0.9s; }
-
 @keyframes fadeInRight {
   to {
     opacity: 1;
     transform: translateX(0);
   }
+}
+
+.word-left {
+  transform: translateX(-50px);
+  animation: fadeInLeft 0.6s forwards;
+}
+
+.word-right {
+  transform: translateX(50px);
+  animation: fadeInRight 0.6s forwards;
 }
     </style>
 </head>
@@ -889,7 +885,7 @@ document.querySelectorAll('.faq-question').forEach(button => {
     });
 });
   // 👉 Data final (ajuste para o dia e hora desejados)
-const endDate = new Date("Nov 31, 2025 23:59:59").getTime();
+const endDate = new Date("Nov 31, 2070 23:59:59").getTime();
 
 const timer = setInterval(() => {
   const now = new Date().getTime();
@@ -912,6 +908,29 @@ const timer = setInterval(() => {
     `;
   }
 }, 1000);  
+        // Seleciona o título
+const heroTitle = document.querySelector('.hero-title');
+
+// Separa a parte normal e a gradient-text
+const normalTextNode = heroTitle.firstChild; // "Sua Fábrica de Sites com"
+const gradientSpan = heroTitle.querySelector('.gradient-text'); // "Inteligência Artificial"
+
+// Função para envolver palavras em span
+function wrapWords(node, className, delayStart=0, delayStep=0.3) {
+  const words = node.textContent.split(' ');
+  node.textContent = ''; // limpa o texto
+  words.forEach((word, i) => {
+    const span = document.createElement('span');
+    span.textContent = word + ' ';
+    span.classList.add(className);
+    span.style.animationDelay = `${delayStart + i*delayStep}s`;
+    node.appendChild(span);
+  });
+}
+
+// Aplica animação
+wrapWords(normalTextNode, 'word-left', 0.1, 0.2);
+wrapWords(gradientSpan, 'word-right', 0.3, 0.3);
         
     </script>
   </body>

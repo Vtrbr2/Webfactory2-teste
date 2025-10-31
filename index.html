@@ -423,53 +423,7 @@ body.dark-mode .faq-answer {
 }
      
   /*entrada*/ 
-      .word-left, .word-right {
-  disp.hero-title {
-  display: inline-block;
-}
-
-.hero-title .gradient-text {
-  display: inline-block;
-}
-
-/* 1️⃣ frase da esquerda */
-.hero-title {
-  opacity: 0;
-  transform: translateX(-50px);
-  animation: fadeInLeft 0.6s forwards;
-  animation-delay: 0.1s;
-}
-
-/* 2️⃣ palavra “Inteligência” vinda da frente */
-.hero-title .gradient-text::first-letter {
-  opacity: 0;
-  transform: translateX(0);
-  animation: fadeInFront 0.6s forwards;
-  animation-delay: 0.4s;
-}
-
-/* 3️⃣ palavra “Artificial” vinda da direita */
-.hero-title .gradient-text::after {
-  content: " Artificial";
-  opacity: 0;
-  display: inline-block;
-  transform: translateX(50px);
-  animation: fadeInRight 0.6s forwards;
-  animation-delay: 0.7s;
-}
-
-/* keyframes */
-@keyframes fadeInLeft {
-  to { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes fadeInFront {
-  to { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes fadeInRight {
-  to { opacity: 1; transform: translateX(0); }
-}
+      
     </style>
 </head>
 

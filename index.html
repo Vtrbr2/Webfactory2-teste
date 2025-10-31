@@ -369,7 +369,27 @@ body.dark-mode .faq-answer {
   border: 6px solid #646fff;
   box-shadow: 0px 0px;
 }
-   
+/* From Uiverse.io by absoluteSTrange */ 
+.card {
+ width: 190px;
+ height: 254px;
+ background: white;
+ border-radius: 10px;
+ transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.shadow {
+ box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1),
+             0 0  0 2px rgb(190, 190, 190),
+             0.3em 0.3em 1em rgba(0,0,0,0.3);
+}
+
+.card-text {
+  text-align: center;      /* centraliza horizontalmente */
+  padding: 10px;           /* dá um espaçamento interno */
+  font-size: 16px;         /* tamanho da fonte */
+  color: #333;             /* cor do texto */
+}
     </style>
 </head>
 
@@ -562,6 +582,13 @@ body.dark-mode .faq-answer {
           Soluções completas para sua presença digital.
         </p>
 
+
+
+
+          <div class="card shadow">
+  <p class="card-text">Este é o texto do card</p>
+          </div>
+          
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div class="service-card bg-card-escuro p-6 rounded-xl border border-borda-divisao transition-all duration-300 hover:border-roxo-principal hover:-translate-y-1 hover:shadow-2xl hover:shadow-roxo-principal/10">
             <i class="bx bx-rocket card-icon text-4xl text-roxo-principal mb-4"></i>

@@ -988,13 +988,7 @@ body.dark-mode .faq-answer {
       });
    
     
-    // ===== FAQ interativo =====
-document.querySelectorAll('.faq-question').forEach(button => {
-    button.addEventListener('click', () => {
-        const item = button.parentElement;
-        item.classList.toggle('active');
-    });
-});
+
   // 👉 Data final (ajuste para o dia e hora desejados)
 const endDate = new Date("Dec 31, 2025 23:59:59").getTime();
 

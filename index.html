@@ -370,9 +370,12 @@ body.dark-mode .faq-answer {
   box-shadow: 0px 0px;
 }
 /* From Uiverse.io by absoluteSTrange */ 
-.card {
- width: 190px;
- height: 254px;
+ .card{
+  width: 90%;               /* ocupa 90% da largura da tela */
+  max-width: 400px;         /* largura máxima em telas maiores */
+  margin: 10px auto;        /* centraliza horizontalmente */
+  height: auto;             /* altura automática para o conteúdo */
+  padding: 20px;            /* espaço interno */
  background: white;
  border-radius: 10px;
  transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);

@@ -272,6 +272,59 @@ body.dark-mode .faq-answer {
 .faq-item.active .faq-question i {
     transform: rotate(180deg);
     }
+   
+    :root {
+  --roxo: #6a11cb;
+  --rosa: #ff4dda;
+  --azul: #1b1b5d;
+}
+
+.countdown-banner {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+  background: linear-gradient(90deg, var(--roxo), var(--rosa));
+  color: #fff;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 0 15px rgba(255, 77, 218, 0.4);
+  transition: all 0.3s ease;
+}
+
+.countdown-timer {
+  background: var(--azul);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.countdown-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.2);
+  transform: skewX(-20deg);
+  animation: shine 4s infinite;
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: 100%; }
+}
     </style>
 </head>
 
@@ -368,6 +421,16 @@ body.dark-mode .faq-answer {
       </div>
     </nav>
 
+ <div class="countdown-banner">
+  <span class="countdown-title">🚀 Black Friday IA Web Factory:</span>
+  <div class="countdown-timer">
+    <span id="days">00</span>D
+    <span id="hours">00</span>H
+    <span id="minutes">00</span>M
+    <span id="seconds">00</span>S
+  </div>
+    </div>
+    
     <main>
       <section id="hero" class="hero container mx-auto px-6 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center relative overflow-hidden">
         <div class="glow-effect"></div>
@@ -678,7 +741,29 @@ document.querySelectorAll('.faq-question').forEach(button => {
         item.classList.toggle('active');
     });
 });
-    
+    // 👉 Defina aqui o horário final
+const endDate = new Date("Nov 31, 2025 23:59:59").getTime();
+
+const timer = setInterval(() => {
+  const now = new Date().getTime();
+  const distance = endDate - now;
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("days").innerText = days.toString().padStart(2, "0");
+  document.getElementById("hours").innerText = hours.toString().padStart(2, "0");
+  document.getElementById("minutes").innerText = minutes.toString().padStart(2, "0");
+  document.getElementById("seconds").innerText = seconds.toString().padStart(2, "0");
+
+  if (distance < 0) {
+    clearInterval(timer);
+    document.querySelector(".countdown-banner").innerHTML = "🔥 Promoção encerrada!";
+  }
+}, 1000);
+        
     </script>
   </body>
 </html>

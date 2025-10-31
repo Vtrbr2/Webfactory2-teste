@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sucesso no Envio de E-mail</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Animações personalizadas */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        @keyframes confettiFall {
+            0% { transform: translateY(0) rotate(0); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: var(--color);
+            animation: confettiFall 5s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <!-- Formulário de exemplo para demonstração -->
+    <form id="emailForm" class="bg-white p-8 rounded-lg shadow-lg">
+        <h2 class="text-2xl font-bold mb-4">Enviar E-mail</h2>
+        <input type="email" placeholder="Seu e-mail" class="w-full p-2 mb-4 border rounded">
+        <textarea placeholder="Mensagem" class="w-full p-2 mb-4 border rounded"></textarea>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Enviar</button>
+    </form>
+
+    <!-- Tela de sucesso (inicialmente oculta) -->
+    <div id="successScreen" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white p-8 rounded-lg shadow-2xl text-center max-w-md w-full transform scale-95 animate-fadeIn">
+            <h1 class="text-3xl font-bold text-green-600 mb-4 animate-pulse">Seu e-mail foi enviado com sucesso!</h1>
+            <p class="text-lg text-gray-700 mb-6">Obrigado por entrar em contato. Responderemos em breve. 😊</p>
+            <p class="text-sm text-gray-500 mb-4">Enquanto isso, confira mais sobre o UI Universe para inspirações incríveis!</p>
+            <button id="closeButton" class="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600">Fechar</button>
+        </div>
+        <!-- Container para confetes -->
+        <div id="confettiContainer" class="fixed inset-0 pointer-events-none"></div>
+    </div>
+
+    <script>
+        // Função para gerar confetes
+        function createConfetti() {
+            const container = document.getElementById('confettiContainer');
+            const colors = ['#ff6384', '#36a2eb', '#ffce56', '#4bc0c0', '#9966ff', '#ff9f40'];
+            
+            for (let i = 0; i < 200; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.top = `${Math.random() * -100}px`; // Começa acima da tela
+                confetti.style.setProperty('--color', colors[Math.floor(Math.random() * colors.length)]);
+                confetti.style.animationDelay = `${Math.random() * 2}s`;
+                confetti.style.animationDuration = `${3 + Math.random() * 2}s`;
+                confetti.style.width = `${5 + Math.random() * 10}px`;
+                confetti.style.height = confetti.style.width;
+                container.appendChild(confetti);
+                
+                // Remove confete após animação
+                setTimeout(() => confetti.remove(), 7000);
+            }
+        }
+
+        // Manipular envio do formulário
+        const form = document.getElementById('emailForm');
+        const successScreen = document.getElementById('successScreen');
+        const closeButton = document.getElementById('closeButton');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Simular envio de e-mail (em produção, adicione lógica real)
+            successScreen.classList.remove('hidden');
+            createConfetti();
+        });
+
+        closeButton.addEventListener('click', () => {
+            successScreen.classList.add('hidden');
+            // Limpar confetes
+            document.getElementById('confettiContainer').innerHTML = '';
+        });
+    </script>
+</body>
+</html>
